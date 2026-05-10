@@ -1,0 +1,5 @@
+# Fallback header rules — Netlify reads this in addition to netlify.toml.
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

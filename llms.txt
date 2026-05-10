@@ -1,0 +1,21 @@
+# Umesh Ghimire
+
+> Senior PHP & WordPress developer and project manager based in Kathmandu, Nepal. 12+ years shipping WordPress plugins, Laravel applications and custom PHP/JavaScript systems for product teams worldwide.
+
+Available for freelance projects, retainers and fractional tech-leadership engagements.
+
+## Pages
+
+- [Home](https://umeshghimire.com.np/index.md): Overview, services, featured WordPress projects.
+- [About](https://umeshghimire.com.np/about.md): Story, working style, quick facts, tech stack.
+- [Services](https://umeshghimire.com.np/services.md): Plugin dev, Laravel apps, project management, code audits, DevOps, retainers, FAQ.
+- [Portfolio](https://umeshghimire.com.np/portfolio.md): Yatra, Sikshya LMS, User Registration, icopick, Sipmandu, plus career-project context.
+- [Experience](https://umeshghimire.com.np/experience.md): Career timeline across ThemeGrill, MantraBrain, Unifun, Sofos, E-prabidhi.
+- [CV / Resume](https://umeshghimire.com.np/cv.md): Full resume with experience, projects, skills, languages.
+- [Contact](https://umeshghimire.com.np/contact.md): Direct channels, response time, project-brief checklist.
+
+## Optional
+
+- [GitHub](https://github.com/ughimire): 70+ public repositories.
+- [LinkedIn](https://www.linkedin.com/in/umeshghimire): Professional profile.
+- [WordPress.org plugins](https://wordpress.org/plugins/sikshya/): Sikshya LMS and other published plugins.

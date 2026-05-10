@@ -1,0 +1,107 @@
+# Netlify configuration for umeshghimire.com.np
+# Static multi-page portfolio — no build step required.
+
+[build]
+  publish = "."
+
+# Pretty URLs: requests for /about/ map to /about/index.html automatically.
+# Keep .html canonical paths from being indexed alongside folder URLs.
+[[redirects]]
+  from = "/index.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/about/index.html"
+  to = "/about/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/services/index.html"
+  to = "/services/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/portfolio/index.html"
+  to = "/portfolio/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/experience/index.html"
+  to = "/experience/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/cv/index.html"
+  to = "/cv/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/contact/index.html"
+  to = "/contact/"
+  status = 301
+  force = true
+
+# Security & SEO headers for every response
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=(), interest-cohort=()"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
+    Content-Security-Policy = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https:; connect-src 'self'; form-action 'self'; base-uri 'self'; frame-ancestors 'none'"
+
+# Long-cache static assets (filenames can carry hashes if you ever add a build step)
+[[headers]]
+  for = "/assets/css/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/js/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/assets/img/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/favicon.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=86400"
+
+# Sitemap & robots — short cache so changes propagate fast
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Cache-Control = "public, max-age=3600"
+
+# Markdown views — served as text/markdown for AI/LLM tools
+[[headers]]
+  for = "/*.md"
+  [headers.values]
+    Content-Type = "text/markdown; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+    X-Robots-Tag = "index, follow"
+
+[[headers]]
+  for = "/llms.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=3600"

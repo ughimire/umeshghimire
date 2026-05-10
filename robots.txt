@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /404.html
+
+# Markdown views are intended for AI / LLM crawlers
+Allow: /*.md$
+
+Sitemap: https://umeshghimire.com.np/sitemap.xml
