@@ -476,6 +476,12 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 2rem 0; }
 }
 .toast strong { color: var(--fg); }
 .toast span { color: var(--fg-soft); font-size: .9rem; }
+[hidden] { display: none !important; }
+
+.contact__success { padding: 2rem; text-align: center; }
+.contact__success h2 { margin: 0 0 .6rem; }
+.contact__success p { color: var(--fg-soft); margin: 0 0 1rem; }
+.contact__success p:last-child { margin: 1.2rem 0 0; }
 
 .cta-banner {
   text-align: center; padding: 2.4rem 1.5rem; border-radius: var(--radius-lg);

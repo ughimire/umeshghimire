@@ -64,8 +64,15 @@
   const yr = document.getElementById('year');
   if (yr) yr.textContent = String(new Date().getFullYear());
 
-  // ---------- Contact form success toast (Netlify redirects with ?submitted=true) ----------
+  // ---------- Contact form success state (Netlify redirects with ?submitted=true) ----------
   if (location.search.indexOf('submitted=true') !== -1) {
+    const form = document.getElementById('contact-form');
+    const success = document.getElementById('contact-success');
+    if (form) form.hidden = true;
+    if (success) {
+      success.hidden = false;
+      success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
     const t = document.getElementById('toast');
     if (t) {
       t.hidden = false;

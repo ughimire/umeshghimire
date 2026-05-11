@@ -154,7 +154,13 @@
           </div>
         </div>
 
-        <form class="contact__form card" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contact/?submitted=true">
+        <div class="contact__success card" id="contact-success" role="status" aria-live="polite" hidden>
+          <h2>Message sent — thank you!</h2>
+          <p>Your message landed in my inbox. I'll get back to you within one business day at the email you provided.</p>
+          <p><a class="btn btn--secondary" href="/">Back to home</a></p>
+        </div>
+
+        <form class="contact__form card" id="contact-form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/contact/?submitted=true">
           <input type="hidden" name="form-name" value="contact" />
           <p class="hp"><label>Don't fill this out: <input name="bot-field" /></label></p>
 
