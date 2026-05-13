@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1020" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+
+  <title>WordPress vs Laravel: When to Pick Which | Umesh Ghimire</title>
+  <meta name="description" content="A practical decision framework for picking between WordPress and Laravel for your next project. Who edits the content, how custom the data model is, and the cost of fighting the wrong tool." />
+  <link rel="canonical" href="https://umeshghimire.com.np/blog/wordpress-vs-laravel/" />
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="WordPress vs Laravel: When to Pick Which" />
+  <meta property="og:description" content="A decision framework, not a tribal war. How to pick between WordPress and Laravel for your next project." />
+  <meta property="og:url" content="https://umeshghimire.com.np/blog/wordpress-vs-laravel/" />
+  <meta property="og:image" content="https://umeshghimire.com.np/assets/img/blog/wordpress-vs-laravel.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:published_time" content="2026-04-29T09:00:00+05:45" />
+  <meta property="article:modified_time" content="2026-05-13T09:00:00+05:45" />
+  <meta property="article:author" content="Umesh Ghimire" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@ughimire1" />
+  <meta name="twitter:creator" content="@ughimire1" />
+  <meta name="twitter:title" content="WordPress vs Laravel: When to Pick Which" />
+  <meta name="twitter:description" content="A practical decision framework for picking between WordPress and Laravel." />
+  <meta name="twitter:image" content="https://umeshghimire.com.np/assets/img/blog/wordpress-vs-laravel.png" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "WordPress vs Laravel: When to Pick Which",
+    "description": "A practical decision framework for picking between WordPress and Laravel for your next project.",
+    "image": "https://umeshghimire.com.np/assets/img/blog/wordpress-vs-laravel.png",
+    "author": { "@type": "Person", "name": "Umesh Ghimire", "url": "https://umeshghimire.com.np/" },
+    "publisher": { "@type": "Person", "name": "Umesh Ghimire", "logo": { "@type": "ImageObject", "url": "https://umeshghimire.com.np/assets/img/favicon-192.png" } },
+    "datePublished": "2026-04-29",
+    "dateModified": "2026-05-13",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://umeshghimire.com.np/blog/wordpress-vs-laravel/" },
+    "url": "https://umeshghimire.com.np/blog/wordpress-vs-laravel/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://umeshghimire.com.np/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://umeshghimire.com.np/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "WordPress vs Laravel", "item": "https://umeshghimire.com.np/blog/wordpress-vs-laravel/" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a class="brand" href="/" aria-label="Umesh Ghimire — PHP & WordPress Developer in Nepal">
+        <span class="brand__mark"><img src="/assets/img/favicon-192.png" alt="Umesh Ghimire" width="36" height="36" loading="eager" decoding="async" /></span>
+        <span class="brand__text">Umesh Ghimire</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/services/">Services</a>
+        <a href="/portfolio/">Portfolio</a>
+        <a href="/experience/">Experience</a>
+        <a href="/blog/">Blog</a>
+        <a href="/cv/">CV</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">
+          <svg class="icon icon--sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4V2m0 20v-2M4 12H2m20 0h-2M5.6 5.6 4.2 4.2m15.6 15.6-1.4-1.4M5.6 18.4l-1.4 1.4M19.8 4.2l-1.4 1.4M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <svg class="icon icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        </button>
+        <a class="btn btn--primary nav__cta" href="/contact/">Hire me</a>
+        <button class="nav__menu" id="navMenu" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="article">
+      <header class="article__header">
+        <p class="breadcrumbs"><a href="/">Home</a> · <a href="/blog/">Blog</a> · <span aria-current="page">WordPress vs Laravel</span></p>
+        <span class="kicker">Architecture · Decisions</span>
+        <h1>WordPress vs Laravel: when to pick which</h1>
+        <p class="article__meta">By <a href="/about/">Umesh Ghimire</a> · Published 29 April 2026 · 10 min read</p>
+        <p class="lede">"WordPress or Laravel?" is the wrong opening question. Both are PHP. Both can ship the same product. The right question is who is editing content, how custom the data model is, and where the project will hurt three years from now. Here is the framework I use when a client asks.</p>
+        <figure class="article__hero">
+          <img src="/assets/img/blog/wordpress-vs-laravel.png" alt="WordPress vs Laravel decision framework" width="1200" height="630" loading="eager" decoding="async" />
+        </figure>
+      </header>
+
+      <div class="article__body">
+        <nav class="article__toc" aria-label="Table of contents">
+          <h2>In this article</h2>
+          <ol>
+            <li><a href="#not-a-war">Why this isn't a tribal war</a></li>
+            <li><a href="#three-questions">The three questions that decide it</a></li>
+            <li><a href="#wp-wins">When WordPress is the right answer</a></li>
+            <li><a href="#laravel-wins">When Laravel is the right answer</a></li>
+            <li><a href="#dont-fight">When you're tempted to fight WordPress, stop</a></li>
+            <li><a href="#hybrid">The boring hybrid that often wins</a></li>
+            <li><a href="#cost">The real cost of picking wrong</a></li>
+            <li><a href="#takeaways">Takeaways</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="not-a-war">Why this isn't a tribal war</h2>
+        <p>WordPress and Laravel both run on PHP. They both store data in MySQL. They both render HTML. The differences are not philosophical — they are about <em>what is already built for you</em> versus <em>what you build yourself</em>. WordPress is a finished product that you extend. Laravel is a framework that you assemble into a product.</p>
+        <p>Holy wars between the two camps usually come down to people defending whichever one they know best. As a senior developer, the more honest answer is "it depends, and here is on what". So let's get to that.</p>
+
+        <h2 id="three-questions">The three questions that decide it</h2>
+        <p>Skip the feature lists. These three questions get you 80 % of the way to the right call:</p>
+        <ol>
+          <li><strong>Who edits the content, and how often?</strong> If non-technical people will publish, edit and reorganise content multiple times a week, you need a CMS. WordPress's editor, media library, role system and revision history would take six months to recreate in Laravel — and you'd build them worse.</li>
+          <li><strong>How custom is the data model?</strong> Posts and pages with custom fields are WordPress's home turf. A multi-tenant SaaS with 30 entities, complex permissions, business rules that change weekly and a public REST API is Laravel's home turf. The further you are from "documents" and the closer to "transactions and workflows", the more Laravel earns its keep.</li>
+          <li><strong>Who is the user, and what is the UI?</strong> Are users mostly reading, occasionally filling a form? WordPress. Are users spending hours per day in a bespoke dashboard with real-time updates and complex interactions? Laravel (often paired with a JS frontend).</li>
+        </ol>
+        <p>Three "WordPress" answers? Use WordPress. Three "Laravel" answers? Use Laravel. Mixed? Read on.</p>
+
+        <h2 id="wp-wins">When WordPress is the right answer</h2>
+        <p>Use WordPress when most of the following are true:</p>
+        <ul>
+          <li>The project is content-heavy: a marketing site, a blog, a publication, a portfolio, a documentation site, a knowledge base.</li>
+          <li>Non-technical editors must be self-sufficient — adding pages, tweaking copy, uploading media without a developer.</li>
+          <li>You need a working site in weeks, not months, and the budget reflects that.</li>
+          <li>You can find an existing plugin that covers a non-trivial feature (forms, SEO, e-commerce via WooCommerce, membership, LMS).</li>
+          <li>You want SEO and performance defaults you don't have to think about for the first version.</li>
+        </ul>
+        <p>The leverage of WordPress is the ecosystem. A solid theme plus three or four well-maintained plugins gets you to a respectable product faster than any framework can. The trade-off is that you live inside someone else's conventions — which is fine, until it isn't (more on that below).</p>
+
+        <h2 id="laravel-wins">When Laravel is the right answer</h2>
+        <p>Use Laravel when most of the following are true:</p>
+        <ul>
+          <li>The product is fundamentally an application, not a website. Users do things; they don't just read.</li>
+          <li>The data model is bespoke. You have entities like "subscription", "invoice", "audit log", "team", "role", "policy", "webhook". They have non-trivial relationships and business rules that will keep evolving.</li>
+          <li>You need a real REST or GraphQL API as a first-class deliverable, not as an afterthought.</li>
+          <li>The team will grow. Multiple developers will work on this for years. They need a framework with explicit conventions, dependency injection, queues, jobs, scheduled tasks, migrations, and a test suite that can run thousands of tests in seconds.</li>
+          <li>You want a modern PHP developer experience — typed code, clean DI, a CLI that scaffolds, an HTTP layer that doesn't surprise you.</li>
+        </ul>
+        <p>Laravel's leverage is its conventions. Once a team is fluent, every project looks the same: routes, controllers, form requests, services, jobs, tests. New hires are productive in days because they have written this shape of code before. WordPress doesn't have that shape — every WordPress project is a slightly different snowflake of plugins and conventions chosen by whoever started it.</p>
+
+        <h2 id="dont-fight">When you're tempted to fight WordPress, stop</h2>
+        <p>The single most expensive mistake I see is choosing WordPress for a SaaS-shaped product because "we already have a WordPress site". You can build almost anything in WordPress if you try hard enough. The question is what it costs.</p>
+        <p>Warning signs that you're trying to make WordPress do Laravel's job:</p>
+        <ul>
+          <li>You are creating five or more custom post types that don't represent content — they represent business entities (orders, subscriptions, leads, projects).</li>
+          <li>Your "settings page" has grown to twelve sub-screens and uses a JavaScript framework you've vendored into the plugin.</li>
+          <li>You are bypassing <code>WP_Query</code> with raw <code>$wpdb</code> queries because the post-type model isn't a fit.</li>
+          <li>You have written your own user roles, permissions and policies that ignore <code>current_user_can</code>.</li>
+          <li>You are scheduling business-critical jobs through <code>wp-cron</code>, hitting its reliability problems, and patching around them.</li>
+        </ul>
+        <p>If two or more of these describe your project, you are paying the cost of WordPress (theme constraints, plugin conflicts, the editor experience, the wp-admin UI) without getting the benefit (out-of-the-box CMS for editors). That is when Laravel earns its keep.</p>
+
+        <h2 id="hybrid">The boring hybrid that often wins</h2>
+        <p>A pattern that catches people by surprise: <strong>WordPress for the marketing site, Laravel for the application.</strong> Two codebases, two domains (or subdomains), shared design system. Marketing keeps publishing freely without a developer. The product team builds a real application with real conventions. Neither one is fighting its tool.</p>
+        <p>This sounds like more work, but in practice it is less. The marketing site barely needs maintenance once it's up. The application is built in the framework that fits. The only shared concern is single sign-on, which is a solved problem.</p>
+        <p>I have shipped this hybrid more times than I have shipped either tool alone for a sufficiently large project.</p>
+
+        <h2 id="cost">The real cost of picking wrong</h2>
+        <p>The cost of choosing the wrong tool is rarely felt in the first three months. The first three months go fine in either. The cost shows up in year two, when:</p>
+        <ul>
+          <li>You hit a feature that the framework supports natively but your tool fights, and the workaround is custom and brittle.</li>
+          <li>You onboard a new developer and they spend weeks learning your specific shape of customisation rather than a framework they could read on the documentation.</li>
+          <li>Plugin updates start breaking your customisation and you can't update because you're scared of the regression.</li>
+          <li>You want to expose a feature through a different channel (mobile app, partner API) and you have to factor logic out of code that wasn't designed to be reused.</li>
+        </ul>
+        <p>The choice is not between "fast now" and "slow later". The fast one and the right one are usually the same — you just have to be honest about what shape your project actually is.</p>
+
+        <h2 id="takeaways">Takeaways</h2>
+        <ul>
+          <li>WordPress and Laravel are not rivals. They solve different problems.</li>
+          <li>Ask: who edits content, how custom is the data model, what is the user doing? Three answers in one direction is your call.</li>
+          <li>Pick WordPress for content-shaped products with non-technical editors and a fast deadline.</li>
+          <li>Pick Laravel for application-shaped products with bespoke entities, a growing team and a long horizon.</li>
+          <li>If you find yourself bending WordPress past five custom post types and a wall of plugins, you have outgrown it. That is fine — switch.</li>
+          <li>Hybrid is allowed. Marketing in WordPress, app in Laravel, with SSO between them, is a great answer for a serious product.</li>
+        </ul>
+
+        <blockquote>
+          <p>Stuck on the call between the two? <a href="/contact/">Send me your project brief</a> — a 30-minute call usually settles it, and I'll tell you honestly which way I would go.</p>
+        </blockquote>
+      </div>
+
+      <footer class="article__footer">
+        <div class="cta-banner">
+          <h2>Need help picking the right stack?</h2>
+          <p>I do scoping calls and written architecture reviews — practical recommendations, not framework politics.</p>
+          <a class="btn btn--primary" href="/contact/">Book a scoping call →</a>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year">2026</span> Umesh Ghimire · PHP &amp; WordPress Developer in Nepal · Kathmandu.</p>
+      <p class="footer__meta">
+        <a href="/">Home</a> · <a href="/about/">About</a> · <a href="/services/">Services</a> · <a href="/portfolio/">Portfolio</a> · <a href="/experience/">Experience</a> · <a href="/blog/">Blog</a> · <a href="/cv/">CV</a> · <a href="/contact/">Contact</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1020" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+
+  <title>WordPress Plugin Architecture for the Long Haul | Umesh Ghimire</title>
+  <meta name="description" content="Patterns for structuring WordPress plugins so they survive WP core upgrades, new developers, and five years of feature requests. Folder layout, hooks, autoloading, settings, schema." />
+  <link rel="canonical" href="https://umeshghimire.com.np/blog/wordpress-plugin-architecture/" />
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="WordPress Plugin Architecture for the Long Haul" />
+  <meta property="og:description" content="Patterns for structuring WordPress plugins so they survive WP core upgrades, new developers, and five years of feature requests." />
+  <meta property="og:url" content="https://umeshghimire.com.np/blog/wordpress-plugin-architecture/" />
+  <meta property="og:image" content="https://umeshghimire.com.np/assets/img/blog/wordpress-plugin-architecture.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:published_time" content="2026-04-15T09:00:00+05:45" />
+  <meta property="article:modified_time" content="2026-05-13T09:00:00+05:45" />
+  <meta property="article:author" content="Umesh Ghimire" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@ughimire1" />
+  <meta name="twitter:creator" content="@ughimire1" />
+  <meta name="twitter:title" content="WordPress Plugin Architecture for the Long Haul" />
+  <meta name="twitter:description" content="Folder structure, autoloading, hooks, settings and schema patterns for plugins your next developer can actually maintain." />
+  <meta name="twitter:image" content="https://umeshghimire.com.np/assets/img/blog/wordpress-plugin-architecture.png" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "WordPress Plugin Architecture for the Long Haul",
+    "description": "Patterns for structuring WordPress plugins so they survive WP core upgrades, new developers and five years of feature requests.",
+    "image": "https://umeshghimire.com.np/assets/img/blog/wordpress-plugin-architecture.png",
+    "author": { "@type": "Person", "name": "Umesh Ghimire", "url": "https://umeshghimire.com.np/" },
+    "publisher": { "@type": "Person", "name": "Umesh Ghimire", "logo": { "@type": "ImageObject", "url": "https://umeshghimire.com.np/assets/img/favicon-192.png" } },
+    "datePublished": "2026-04-15",
+    "dateModified": "2026-05-13",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://umeshghimire.com.np/blog/wordpress-plugin-architecture/" },
+    "url": "https://umeshghimire.com.np/blog/wordpress-plugin-architecture/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://umeshghimire.com.np/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://umeshghimire.com.np/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "WordPress Plugin Architecture for the Long Haul", "item": "https://umeshghimire.com.np/blog/wordpress-plugin-architecture/" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a class="brand" href="/" aria-label="Umesh Ghimire — PHP & WordPress Developer in Nepal">
+        <span class="brand__mark"><img src="/assets/img/favicon-192.png" alt="Umesh Ghimire" width="36" height="36" loading="eager" decoding="async" /></span>
+        <span class="brand__text">Umesh Ghimire</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/services/">Services</a>
+        <a href="/portfolio/">Portfolio</a>
+        <a href="/experience/">Experience</a>
+        <a href="/blog/">Blog</a>
+        <a href="/cv/">CV</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">
+          <svg class="icon icon--sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4V2m0 20v-2M4 12H2m20 0h-2M5.6 5.6 4.2 4.2m15.6 15.6-1.4-1.4M5.6 18.4l-1.4 1.4M19.8 4.2l-1.4 1.4M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <svg class="icon icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        </button>
+        <a class="btn btn--primary nav__cta" href="/contact/">Hire me</a>
+        <button class="nav__menu" id="navMenu" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="article">
+      <header class="article__header">
+        <p class="breadcrumbs"><a href="/">Home</a> · <a href="/blog/">Blog</a> · <span aria-current="page">WordPress plugin architecture</span></p>
+        <span class="kicker">WordPress · Architecture</span>
+        <h1>WordPress plugin architecture for the long haul</h1>
+        <p class="article__meta">By <a href="/about/">Umesh Ghimire</a> · Published 15 April 2026 · 9 min read</p>
+        <p class="lede">Most plugins don't fail because of a bug. They fail because nobody can read them five years later. Here is the structure I reach for when a plugin needs to survive WordPress upgrades, three rounds of feature creep and the developer who inherits it next.</p>
+        <figure class="article__hero">
+          <img src="/assets/img/blog/wordpress-plugin-architecture.png" alt="WordPress plugin architecture for the long haul" width="1200" height="630" loading="eager" decoding="async" />
+        </figure>
+      </header>
+
+      <div class="article__body">
+        <nav class="article__toc" aria-label="Table of contents">
+          <h2>In this article</h2>
+          <ol>
+            <li><a href="#why-plugins-rot">Why most plugins rot</a></li>
+            <li><a href="#folder-structure">A folder structure that ages well</a></li>
+            <li><a href="#autoloading">PSR-4 autoloading inside a WordPress plugin</a></li>
+            <li><a href="#single-bootstrap">One bootstrap file, no surprises</a></li>
+            <li><a href="#hooks-as-seams">Treat hooks as your seams, not your code</a></li>
+            <li><a href="#schema-and-options">Schema, options and the version flag</a></li>
+            <li><a href="#settings-once">Build the settings page once, not for every release</a></li>
+            <li><a href="#i18n-and-uninstall">Internationalisation and the uninstall contract</a></li>
+            <li><a href="#testing-without-wp">Testing without WordPress</a></li>
+            <li><a href="#takeaways">Takeaways</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="why-plugins-rot">Why most plugins rot</h2>
+        <p>Open enough WordPress plugins and you start noticing the same shape. A single 2,000-line file in the root of the plugin folder. Globals everywhere. A class named after the plugin that holds every piece of functionality. <code>add_action</code> calls scattered through that class so you cannot tell which feature triggers what without grepping. A <code>$wpdb-&gt;query</code> three levels deep inside an <code>admin_notices</code> handler. Custom database tables created on activation but never migrated when the schema changes. Strings hardcoded in English because internationalisation was a "phase two" task that never came.</p>
+        <p>None of those problems are caused by WordPress. They are caused by the plugin growing one feature at a time, with no architectural decisions made up front. The first version is "small enough" to be careless with. By the time it isn't small enough, the carelessness is locked in.</p>
+        <p>The fix is not to over-engineer the first release. The fix is to make a few cheap structural decisions on day one that pay off for years. None of what follows is exotic. All of it is what I wish more plugins did before they shipped.</p>
+
+        <h2 id="folder-structure">A folder structure that ages well</h2>
+        <p>Here is the layout I use for any plugin I expect to ship more than two releases of:</p>
+        <pre><code>my-plugin/
+├── my-plugin.php            # Plugin header + bootstrap, ~30 lines max
+├── uninstall.php            # Deletion contract — runs when the user clicks Delete
+├── readme.txt               # WordPress.org readme
+├── composer.json            # PSR-4 autoload, dev dependencies
+├── src/
+│   ├── Plugin.php           # The single class that wires everything together
+│   ├── Admin/               # Admin pages, settings, list tables
+│   ├── Frontend/            # Public-facing rendering, shortcodes, blocks
+│   ├── Rest/                # REST API controllers
+│   ├── Cli/                 # WP-CLI commands (optional but cheap to add)
+│   ├── Database/            # Schema + repository classes
+│   ├── Services/            # Pure-PHP business logic, framework-free
+│   └── Support/             # Helpers, value objects
+├── assets/
+│   ├── css/
+│   ├── js/
+│   └── images/
+├── languages/               # .pot file lives here
+├── templates/               # Override-able front-end templates
+└── tests/
+    ├── Unit/                # Pure PHPUnit, no WordPress required
+    └── Integration/         # WordPress test suite
+</code></pre>
+        <p>The key idea is the split between <code>src/Services/</code> and everything else. <code>Services</code> contains plain PHP classes that know nothing about WordPress. They take inputs, return outputs, throw exceptions on failure. They are unit-testable in milliseconds. The rest of <code>src/</code> is the layer that hooks the WordPress lifecycle into those services — Admin pages call services, REST controllers call services, CLI commands call services. WordPress becomes a delivery mechanism, not the centre of your code.</p>
+        <p>This is what makes the plugin survive a feature pivot. When a client asks "can we expose this through the REST API instead of the shortcode?" the answer is yes, in an afternoon, because the actual logic doesn't change.</p>
+
+        <h2 id="autoloading">PSR-4 autoloading inside a WordPress plugin</h2>
+        <p>You do not need a build step to use Composer's autoloader. You only need <code>composer install</code> once and then ship the resulting <code>vendor/autoload.php</code> with the plugin (or generate it during your release pipeline). Your <code>composer.json</code> looks like:</p>
+        <pre><code>{
+  "name": "your-vendor/my-plugin",
+  "type": "wordpress-plugin",
+  "require": { "php": "&gt;=7.4" },
+  "autoload": {
+    "psr-4": { "MyVendor\\MyPlugin\\": "src/" }
+  }
+}
+</code></pre>
+        <p>Now classes load themselves. No manual <code>require_once</code> chains, no class-name-to-file naming conventions invented from scratch. New file in <code>src/Admin/SettingsPage.php</code>? It exists as <code>MyVendor\MyPlugin\Admin\SettingsPage</code> with no further wiring. That sounds small but it is the difference between adding a new feature in 30 minutes and adding it in two hours of <em>"why isn't this loading"</em>.</p>
+        <p>If you want to support hosts that strip <code>vendor/</code>, ship a tiny fallback autoloader in your bootstrap. But almost nobody does that any more — even WordPress.org accepts vendored Composer dependencies.</p>
+
+        <h2 id="single-bootstrap">One bootstrap file, no surprises</h2>
+        <p>The plugin's main file should do four things and stop:</p>
+        <ol>
+          <li>Declare the plugin header.</li>
+          <li>Refuse to run if accessed directly.</li>
+          <li>Define a couple of constants (path, URL, version).</li>
+          <li>Boot the <code>Plugin</code> class on the right hook.</li>
+        </ol>
+        <pre><code>&lt;?php
+/**
+ * Plugin Name: My Plugin
+ * Version: 1.0.0
+ * Requires PHP: 7.4
+ * Text Domain: my-plugin
+ */
+
+defined( 'ABSPATH' ) || exit;
+
+define( 'MYPLUGIN_FILE', __FILE__ );
+define( 'MYPLUGIN_PATH', plugin_dir_path( __FILE__ ) );
+define( 'MYPLUGIN_URL',  plugin_dir_url( __FILE__ ) );
+define( 'MYPLUGIN_VER',  '1.0.0' );
+
+require_once MYPLUGIN_PATH . 'vendor/autoload.php';
+
+add_action( 'plugins_loaded', static function () {
+    \MyVendor\MyPlugin\Plugin::instance()-&gt;boot();
+} );
+</code></pre>
+        <p>Do not put any feature code in this file. Every time someone adds <em>just this one little thing</em> here, the plugin grows a load order bug. The bootstrap is for bootstrapping; the <code>Plugin</code> class is where you decide what runs when.</p>
+
+        <h2 id="hooks-as-seams">Treat hooks as your seams, not your code</h2>
+        <p>Hook handlers should be thin. They translate the WordPress event into a method call on a service, and they translate the service's return value into a WordPress-shaped response. They should not contain business logic.</p>
+        <pre><code>// In src/Admin/SaveOrderHandler.php
+public function on_save( int $post_id ): void {
+    if ( ! $this-&gt;should_handle( $post_id ) ) return;
+
+    $dto    = OrderDtoFactory::from_post( $post_id );
+    $result = $this-&gt;orders-&gt;process( $dto );
+
+    if ( $result-&gt;is_error() ) {
+        $this-&gt;notices-&gt;flash_error( $result-&gt;message() );
+    }
+}
+</code></pre>
+        <p>The actual processing lives in <code>Services\Orders</code>, which is a PHPUnit-testable class with no WordPress dependencies. The hook handler does plumbing. This pattern is what lets you test 80 % of the plugin without booting WordPress at all.</p>
+        <p>Also: <strong>register every hook in one place per feature</strong>, not scattered through random methods. A small <code>register_hooks()</code> at the top of each feature class makes it possible to read the file and immediately see what events it cares about.</p>
+
+        <h2 id="schema-and-options">Schema, options and the version flag</h2>
+        <p>If your plugin owns a database table, you owe future-you two things: a schema definition that <code>dbDelta</code> can run, and a stored version number for that schema.</p>
+        <pre><code>const SCHEMA_VERSION = 3;
+
+public function maybe_upgrade(): void {
+    $current = (int) get_option( 'myplugin_schema_version', 0 );
+    if ( $current === self::SCHEMA_VERSION ) return;
+
+    require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+    dbDelta( $this-&gt;schema_sql() );
+
+    if ( $current &lt; 2 ) $this-&gt;migration_2();
+    if ( $current &lt; 3 ) $this-&gt;migration_3();
+
+    update_option( 'myplugin_schema_version', self::SCHEMA_VERSION );
+}
+</code></pre>
+        <p>Run <code>maybe_upgrade()</code> on <code>plugins_loaded</code>, not just on activation. Activation does not fire when a user updates the plugin via the dashboard, which is exactly when most schema changes need to apply. The version flag means the migration is idempotent and cheap on every load.</p>
+        <p>For options, group them under one prefix (<code>myplugin_*</code>) so they are easy to clean up. Keep an inventory of every option you store. The <code>uninstall.php</code> file is the contract that you will delete them.</p>
+
+        <h2 id="settings-once">Build the settings page once, not for every release</h2>
+        <p>Most "we need a settings page" requests turn into a hand-rolled HTML form, hand-rolled nonces and hand-rolled validation. Three releases later it is unmaintainable. The Settings API is verbose but it gives you a declarative model: register sections, register fields, register sanitizers. Each new field is a one-line addition to a config array. Permission checks, nonces, capability gating and persistence are handled for you.</p>
+        <p>Treat the field list as data. Loop over it to render. Loop over it again to sanitize. The day you need to expose those settings via REST or CLI as well, you have one source of truth.</p>
+
+        <h2 id="i18n-and-uninstall">Internationalisation and the uninstall contract</h2>
+        <p>Two unglamorous habits that pay off forever:</p>
+        <ul>
+          <li><strong>Wrap every user-visible string in <code>__()</code> or <code>esc_html__()</code> from day one.</strong> Retrofitting i18n later is brutal — you'll miss strings, mistranslate context and never recover. Set a text domain in the plugin header, generate a <code>.pot</code> file, and use it.</li>
+          <li><strong>Honour the uninstall contract.</strong> A user clicks Delete because they want this plugin gone. Drop your custom tables. Delete your options. Cancel your scheduled events. Anything you create must have a corresponding teardown in <code>uninstall.php</code>. This is not optional — it is the difference between a plugin that gets recommended and one that gets blacklisted by hosts.</li>
+        </ul>
+
+        <h2 id="testing-without-wp">Testing without WordPress</h2>
+        <p>The slowest part of testing a WordPress plugin is booting WordPress. The fastest part is not booting it. If your <code>Services</code> layer is framework-free, you can run thousands of unit tests in seconds with vanilla PHPUnit. Keep an integration test suite that boots WordPress for the layer that actually touches it — REST endpoints, hook flows, database queries — but make that suite small. The pyramid stays cheap.</p>
+        <p>This is a multiplier effect. Plugins with fast tests get refactored. Plugins with slow tests get patched.</p>
+
+        <h2 id="takeaways">Takeaways</h2>
+        <ul>
+          <li>Split your plugin into a thin WordPress layer and a fat service layer that knows nothing about WordPress.</li>
+          <li>Use Composer's PSR-4 autoloader. Every new file just works.</li>
+          <li>Keep your bootstrap file boring. Put feature code in classes.</li>
+          <li>Hooks are seams. Handlers translate; services decide.</li>
+          <li>Track a schema version. Migrate on <code>plugins_loaded</code>, not just activation.</li>
+          <li>Use the Settings API as data, not as code.</li>
+          <li>Wrap strings, honour uninstall, write tests that don't boot WordPress.</li>
+        </ul>
+        <p>None of this is exotic. All of it is the difference between a plugin you ship once and a plugin you can still maintain in five years.</p>
+
+        <blockquote>
+          <p>Building a plugin and want a senior pair of eyes on the architecture before you commit? <a href="/contact/">Send me a brief</a> — I do plugin reviews and rescue work as one-off engagements, written report included.</p>
+        </blockquote>
+      </div>
+
+      <footer class="article__footer">
+        <div class="cta-banner">
+          <h2>Need a senior WordPress developer?</h2>
+          <p>I build, audit and rescue WordPress plugins for clients worldwide. Tell me about the project — I reply within one business day.</p>
+          <a class="btn btn--primary" href="/contact/">Start a project →</a>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year">2026</span> Umesh Ghimire · PHP &amp; WordPress Developer in Nepal · Kathmandu.</p>
+      <p class="footer__meta">
+        <a href="/">Home</a> · <a href="/about/">About</a> · <a href="/services/">Services</a> · <a href="/portfolio/">Portfolio</a> · <a href="/experience/">Experience</a> · <a href="/blog/">Blog</a> · <a href="/cv/">CV</a> · <a href="/contact/">Contact</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

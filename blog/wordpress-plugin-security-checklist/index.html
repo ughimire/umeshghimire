@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1020" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+
+  <title>WordPress Plugin Security Checklist Every Developer Should Follow | Umesh Ghimire</title>
+  <meta name="description" content="A practical, field-tested security checklist for WordPress plugin developers. Sanitization, escaping, nonces, capability checks, SQL safety, REST permissions and the patterns to make all of them habit." />
+  <link rel="canonical" href="https://umeshghimire.com.np/blog/wordpress-plugin-security-checklist/" />
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="WordPress Plugin Security Checklist Every Developer Should Follow" />
+  <meta property="og:description" content="Sanitization, escaping, nonces, capability checks and the SQL patterns that keep your plugin out of the next CVE roundup." />
+  <meta property="og:url" content="https://umeshghimire.com.np/blog/wordpress-plugin-security-checklist/" />
+  <meta property="og:image" content="https://umeshghimire.com.np/assets/img/blog/wordpress-plugin-security-checklist.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:published_time" content="2026-04-22T09:00:00+05:45" />
+  <meta property="article:modified_time" content="2026-05-13T09:00:00+05:45" />
+  <meta property="article:author" content="Umesh Ghimire" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@ughimire1" />
+  <meta name="twitter:creator" content="@ughimire1" />
+  <meta name="twitter:title" content="WordPress Plugin Security Checklist" />
+  <meta name="twitter:description" content="Sanitization, escaping, nonces, SQL safety and the habits that keep plugins safe." />
+  <meta name="twitter:image" content="https://umeshghimire.com.np/assets/img/blog/wordpress-plugin-security-checklist.png" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "WordPress Plugin Security Checklist Every Developer Should Follow",
+    "description": "A practical security checklist for WordPress plugin developers — sanitization, escaping, nonces, capability checks, SQL safety, REST permissions.",
+    "image": "https://umeshghimire.com.np/assets/img/blog/wordpress-plugin-security-checklist.png",
+    "author": { "@type": "Person", "name": "Umesh Ghimire", "url": "https://umeshghimire.com.np/" },
+    "publisher": { "@type": "Person", "name": "Umesh Ghimire", "logo": { "@type": "ImageObject", "url": "https://umeshghimire.com.np/assets/img/favicon-192.png" } },
+    "datePublished": "2026-04-22",
+    "dateModified": "2026-05-13",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://umeshghimire.com.np/blog/wordpress-plugin-security-checklist/" },
+    "url": "https://umeshghimire.com.np/blog/wordpress-plugin-security-checklist/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://umeshghimire.com.np/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://umeshghimire.com.np/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "WordPress Plugin Security Checklist", "item": "https://umeshghimire.com.np/blog/wordpress-plugin-security-checklist/" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a class="brand" href="/" aria-label="Umesh Ghimire — PHP & WordPress Developer in Nepal">
+        <span class="brand__mark"><img src="/assets/img/favicon-192.png" alt="Umesh Ghimire" width="36" height="36" loading="eager" decoding="async" /></span>
+        <span class="brand__text">Umesh Ghimire</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/services/">Services</a>
+        <a href="/portfolio/">Portfolio</a>
+        <a href="/experience/">Experience</a>
+        <a href="/blog/">Blog</a>
+        <a href="/cv/">CV</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">
+          <svg class="icon icon--sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4V2m0 20v-2M4 12H2m20 0h-2M5.6 5.6 4.2 4.2m15.6 15.6-1.4-1.4M5.6 18.4l-1.4 1.4M19.8 4.2l-1.4 1.4M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <svg class="icon icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        </button>
+        <a class="btn btn--primary nav__cta" href="/contact/">Hire me</a>
+        <button class="nav__menu" id="navMenu" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="article">
+      <header class="article__header">
+        <p class="breadcrumbs"><a href="/">Home</a> · <a href="/blog/">Blog</a> · <span aria-current="page">Plugin security checklist</span></p>
+        <span class="kicker">WordPress · Security</span>
+        <h1>WordPress plugin security checklist every developer should follow</h1>
+        <p class="article__meta">By <a href="/about/">Umesh Ghimire</a> · Published 22 April 2026 · 11 min read</p>
+        <p class="lede">Almost every WordPress plugin vulnerability I have seen reduces to one of seven mistakes. None of them are subtle, and none of them require a deep cryptography background to avoid. The trick is making the right pattern automatic — so that the safe path is also the easy path. Here is the checklist I run a plugin through before I ship it, and the patterns that make each item habit.</p>
+        <figure class="article__hero">
+          <img src="/assets/img/blog/wordpress-plugin-security-checklist.png" alt="WordPress plugin security checklist" width="1200" height="630" loading="eager" decoding="async" />
+        </figure>
+      </header>
+
+      <div class="article__body">
+        <nav class="article__toc" aria-label="Table of contents">
+          <h2>The checklist</h2>
+          <ol>
+            <li><a href="#direct-access">Block direct file access</a></li>
+            <li><a href="#sanitize-input">Sanitize on input</a></li>
+            <li><a href="#escape-output">Escape on output</a></li>
+            <li><a href="#nonces">Use nonces on every state-changing request</a></li>
+            <li><a href="#capabilities">Check capabilities, not just login</a></li>
+            <li><a href="#sql-safety">Prepared statements for every query</a></li>
+            <li><a href="#rest-permissions">REST API permission_callbacks</a></li>
+            <li><a href="#file-uploads">File uploads and path traversal</a></li>
+            <li><a href="#secrets">Secrets, options and the wp-config divide</a></li>
+            <li><a href="#disclosure">When something does go wrong</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="direct-access">1. Block direct file access</h2>
+        <p>Every PHP file in your plugin should refuse to run if it is hit directly via the browser, because the only legitimate caller is WordPress itself. The one-liner at the top of every file:</p>
+        <pre><code>defined( 'ABSPATH' ) || exit;</code></pre>
+        <p>It looks trivial because it is. But it stops a whole class of issues where a file is loadable on its own and somebody discovers it leaks information, runs code or causes errors that disclose a path. Make this part of your editor snippet so you never forget.</p>
+
+        <h2 id="sanitize-input">2. Sanitize on input</h2>
+        <p>"User input" doesn't only mean a form a visitor fills in. It is anything you didn't generate yourself: <code>$_GET</code>, <code>$_POST</code>, <code>$_REQUEST</code>, <code>$_COOKIE</code>, REST request bodies, third-party API responses, even values stored in the database that originally came from one of those sources. Treat all of it as hostile.</p>
+        <p>WordPress ships sanitizers for the common shapes:</p>
+        <ul>
+          <li><code>sanitize_text_field()</code> — short single-line strings (names, titles).</li>
+          <li><code>sanitize_textarea_field()</code> — multi-line plain text.</li>
+          <li><code>sanitize_email()</code>, <code>sanitize_url()</code>, <code>sanitize_key()</code>, <code>sanitize_title()</code>.</li>
+          <li><code>absint()</code> — for IDs and counts.</li>
+          <li><code>wp_kses_post()</code> — for HTML you want to allow but constrain.</li>
+        </ul>
+        <p>The pattern: never read a superglobal directly into a variable that you then act on. Always wrap it. The line</p>
+        <pre><code>$id = absint( $_GET['id'] ?? 0 );</code></pre>
+        <p>is shorter than the unsafe version and removes an entire bug category. If a sanitizer doesn't exist for the shape you need (for example, a JSON object with a known schema), write one — and make it return a value-object, not a flat array, so that anywhere downstream knows it has been validated.</p>
+
+        <h2 id="escape-output">3. Escape on output</h2>
+        <p>Sanitization protects what you store. <strong>Escaping protects what you show.</strong> They are not the same thing and neither one substitutes for the other. The rule: escape at the latest possible moment, with the function that matches the destination context.</p>
+        <ul>
+          <li><code>esc_html()</code> — text inside a tag.</li>
+          <li><code>esc_attr()</code> — values inside an HTML attribute.</li>
+          <li><code>esc_url()</code> — anything used in <code>href</code> or <code>src</code>.</li>
+          <li><code>esc_js()</code> — values interpolated into inline JS (rare; prefer JSON).</li>
+          <li><code>wp_kses()</code> with an explicit allowed-tag list — when you must render user-provided HTML.</li>
+        </ul>
+        <p>A useful editor habit: every time you type <code>echo</code> or <code>&lt;?=</code>, immediately type the matching escape function around the value. Re-fitting <code>esc_html</code> later is how you miss things.</p>
+
+        <h2 id="nonces">4. Use nonces on every state-changing request</h2>
+        <p>A nonce ("number used once") is WordPress's CSRF defence. Any form that performs a side-effect — saving, deleting, sending email, anything that isn't a pure read — needs one.</p>
+        <pre><code>// Generating
+wp_nonce_field( 'myplugin_save_settings', 'myplugin_nonce' );
+
+// Verifying
+if ( ! isset( $_POST['myplugin_nonce'] )
+     || ! wp_verify_nonce( $_POST['myplugin_nonce'], 'myplugin_save_settings' ) ) {
+    wp_die( esc_html__( 'Security check failed.', 'my-plugin' ), 403 );
+}
+</code></pre>
+        <p>For AJAX, use <code>check_ajax_referer( 'myplugin_save_settings' )</code> at the top of the handler — it does both the existence check and the verification in one call and dies on failure. For the REST API, your <code>permission_callback</code> is the equivalent (covered below).</p>
+
+        <h2 id="capabilities">5. Check capabilities, not just "logged in"</h2>
+        <p><code>is_user_logged_in()</code> is a <em>terrible</em> authorisation check. A subscriber is logged in. A spammer who registered to comment is logged in. The check you want is "does this user have the capability to do this specific thing?"</p>
+        <pre><code>if ( ! current_user_can( 'manage_options' ) ) {
+    wp_die( esc_html__( 'You do not have permission.', 'my-plugin' ), 403 );
+}
+</code></pre>
+        <p>If your plugin introduces something that doesn't fit the built-in capability set (editing a custom post type with bespoke roles, for example), register your own capabilities at activation and check those. The general rule: <em>nonces prove the request is intentional, capabilities prove the user is allowed</em>. You need both.</p>
+
+        <h2 id="sql-safety">6. Prepared statements for every query</h2>
+        <p>If you are calling <code>$wpdb-&gt;query()</code> with a string that contains a variable, you have a SQL injection bug. There are two safe paths:</p>
+        <ol>
+          <li>Use the higher-level helpers (<code>$wpdb-&gt;insert</code>, <code>$wpdb-&gt;update</code>, <code>$wpdb-&gt;delete</code>) which build prepared queries from your data array.</li>
+          <li>Use <code>$wpdb-&gt;prepare()</code> with placeholders.</li>
+        </ol>
+        <pre><code>// Wrong
+$wpdb-&gt;query( "SELECT * FROM {$wpdb-&gt;prefix}orders WHERE customer_id = $id" );
+
+// Right
+$wpdb-&gt;get_results( $wpdb-&gt;prepare(
+    "SELECT * FROM {$wpdb-&gt;prefix}orders WHERE customer_id = %d",
+    $id
+) );
+</code></pre>
+        <p>One detail people miss: the table name and the column name cannot be parameterised by <code>prepare()</code>. If those come from user input, you need to validate them against an allow-list of known values before interpolating. Never accept "the column name to sort by" from a query string and feed it straight into a query.</p>
+
+        <h2 id="rest-permissions">7. REST API permission_callback is not optional</h2>
+        <p>Every <code>register_rest_route()</code> call must include a <code>permission_callback</code>. Returning <code>'__return_true'</code> means "this endpoint is open to the entire internet, including bots and scrapers" — that is sometimes what you want, but it must be a deliberate choice, not the default.</p>
+        <pre><code>register_rest_route( 'myplugin/v1', '/orders', [
+    'methods'             =&gt; 'POST',
+    'callback'            =&gt; [ $controller, 'create' ],
+    'permission_callback' =&gt; static fn () =&gt; current_user_can( 'edit_shop_orders' ),
+    'args'                =&gt; [
+        'amount' =&gt; [ 'required' =&gt; true, 'sanitize_callback' =&gt; 'absint' ],
+        'note'   =&gt; [ 'sanitize_callback' =&gt; 'sanitize_text_field' ],
+    ],
+] );
+</code></pre>
+        <p>Use <code>args</code> with <code>sanitize_callback</code> on every parameter. WordPress will reject anything missing or invalid before your callback runs. That alone removes a lot of defensive code from your handler.</p>
+
+        <h2 id="file-uploads">8. File uploads and path traversal</h2>
+        <p>Anywhere your plugin accepts a file from the user — even just an image — there are three things to lock down:</p>
+        <ul>
+          <li><strong>Use <code>wp_handle_upload()</code> or <code>media_handle_upload()</code></strong> rather than rolling your own move logic. They run the file through MIME-sniffing and the WordPress allowed-types list.</li>
+          <li><strong>Never trust the supplied filename.</strong> Use it for display, not for the on-disk name. Generate the path yourself with <code>wp_unique_filename()</code>.</li>
+          <li><strong>Resolve any path you read with <code>realpath()</code> and check it is still under your intended directory</strong> before opening it. The classic "download invoice" feature where the filename comes from a query string is the canonical path-traversal vulnerability.</li>
+        </ul>
+        <p>If your plugin lets users include files dynamically (templates, language packs, custom CSS files), the same rule applies: validate against a known directory, reject anything containing <code>..</code> or absolute paths.</p>
+
+        <h2 id="secrets">9. Secrets, options and the wp-config divide</h2>
+        <p>API keys, signing secrets and other "this must never leak" values do not belong in <code>wp_options</code> in plain text. They especially do not belong in plugin code committed to git. The right home is <code>wp-config.php</code> (or environment variables loaded into it), and the right plugin pattern is to read them with a fallback:</p>
+        <pre><code>private function api_key(): string {
+    if ( defined( 'MYPLUGIN_API_KEY' ) ) {
+        return MYPLUGIN_API_KEY;
+    }
+    return (string) get_option( 'myplugin_api_key', '' );
+}
+</code></pre>
+        <p>That gives advanced users a secure way to store the secret outside the database while still letting beginners paste it into a settings field. If you absolutely must store it in <code>wp_options</code>, mark it as protected with <code>add_option( ..., '', false, 'no' )</code> so it isn't autoloaded, and consider encrypting it with a key derived from <code>AUTH_KEY</code>.</p>
+        <p>And: <strong>never log a secret</strong>. Audit your debug output for variable dumps that include API responses or request headers.</p>
+
+        <h2 id="disclosure">10. When something does go wrong</h2>
+        <p>Eventually, somebody will find a vulnerability in code you wrote. The difference between a plugin that survives a CVE and one that gets pulled from WordPress.org is how fast you respond. Have these set up before you need them:</p>
+        <ul>
+          <li>A <code>SECURITY.md</code> in the plugin's repo with a contact email and your disclosure policy.</li>
+          <li>A monitored inbox for that email.</li>
+          <li>A patch-release process you can run end-to-end in under 24 hours.</li>
+          <li>Honest, dated changelog entries that say "security fix" rather than "minor improvements".</li>
+        </ul>
+        <p>Quiet patches are how trust gets lost. Visible, fast patches are how trust is earned.</p>
+
+        <h2 id="habit">Make it habit, not vigilance</h2>
+        <p>The reason this list works as a checklist is that none of the items require thinking under pressure. They are decisions you make once, encode into snippets, base classes and permission callbacks, and then never revisit. That is the actual deliverable: <em>not "we are careful with security" but "the unsafe path takes more typing than the safe one."</em></p>
+
+        <blockquote>
+          <p>Want a security review of an existing plugin before it ships, or after a customer flagged something? <a href="/contact/">Send me a brief</a> — I do plugin audits as fixed-fee engagements with a written report.</p>
+        </blockquote>
+      </div>
+
+      <footer class="article__footer">
+        <div class="cta-banner">
+          <h2>Need a plugin security review?</h2>
+          <p>I audit WordPress plugins for hire — written report, prioritized fix list, and the patterns to make the same mistakes harder next time.</p>
+          <a class="btn btn--primary" href="/contact/">Request an audit →</a>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year">2026</span> Umesh Ghimire · PHP &amp; WordPress Developer in Nepal · Kathmandu.</p>
+      <p class="footer__meta">
+        <a href="/">Home</a> · <a href="/about/">About</a> · <a href="/services/">Services</a> · <a href="/portfolio/">Portfolio</a> · <a href="/experience/">Experience</a> · <a href="/blog/">Blog</a> · <a href="/cv/">CV</a> · <a href="/contact/">Contact</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>

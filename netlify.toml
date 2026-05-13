@@ -43,6 +43,42 @@
   force = true
 
 [[redirects]]
+  from = "/blog/index.html"
+  to = "/blog/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/wordpress-plugin-architecture/index.html"
+  to = "/blog/wordpress-plugin-architecture/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/wordpress-plugin-security-checklist/index.html"
+  to = "/blog/wordpress-plugin-security-checklist/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/wordpress-vs-laravel/index.html"
+  to = "/blog/wordpress-vs-laravel/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/auditing-legacy-php-codebase/index.html"
+  to = "/blog/auditing-legacy-php-codebase/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/blog/hire-wordpress-developer-nepal/index.html"
+  to = "/blog/hire-wordpress-developer-nepal/"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/contact/index.html"
   to = "/contact/"
   status = 301

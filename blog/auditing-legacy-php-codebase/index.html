@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b1020" media="(prefers-color-scheme: dark)" />
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+
+  <title>Auditing a Legacy PHP Codebase Before You Inherit It | Umesh Ghimire</title>
+  <meta name="description" content="A structured approach to auditing a legacy WordPress or Laravel codebase before you take it over. What to read first, the smells that matter, how to scope the rescue and what to put in the report." />
+  <link rel="canonical" href="https://umeshghimire.com.np/blog/auditing-legacy-php-codebase/" />
+  <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+
+  <meta property="og:type" content="article" />
+  <meta property="og:title" content="Auditing a Legacy PHP Codebase Before You Inherit It" />
+  <meta property="og:description" content="A structured approach to auditing a legacy WordPress or Laravel codebase before you take it over — what to read first, the smells that matter, how to scope the rescue." />
+  <meta property="og:url" content="https://umeshghimire.com.np/blog/auditing-legacy-php-codebase/" />
+  <meta property="og:image" content="https://umeshghimire.com.np/assets/img/blog/auditing-legacy-php-codebase.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:published_time" content="2026-05-06T09:00:00+05:45" />
+  <meta property="article:modified_time" content="2026-05-13T09:00:00+05:45" />
+  <meta property="article:author" content="Umesh Ghimire" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@ughimire1" />
+  <meta name="twitter:creator" content="@ughimire1" />
+  <meta name="twitter:title" content="Auditing a Legacy PHP Codebase Before You Inherit It" />
+  <meta name="twitter:description" content="What to read first, what smells matter, and how to scope a rescue without setting fire to production." />
+  <meta name="twitter:image" content="https://umeshghimire.com.np/assets/img/blog/auditing-legacy-php-codebase.png" />
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon-192.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/assets/img/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/css/styles.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Auditing a Legacy PHP Codebase Before You Inherit It",
+    "description": "A structured approach to auditing a legacy WordPress or Laravel codebase before you take it over.",
+    "image": "https://umeshghimire.com.np/assets/img/blog/auditing-legacy-php-codebase.png",
+    "author": { "@type": "Person", "name": "Umesh Ghimire", "url": "https://umeshghimire.com.np/" },
+    "publisher": { "@type": "Person", "name": "Umesh Ghimire", "logo": { "@type": "ImageObject", "url": "https://umeshghimire.com.np/assets/img/favicon-192.png" } },
+    "datePublished": "2026-05-06",
+    "dateModified": "2026-05-13",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "https://umeshghimire.com.np/blog/auditing-legacy-php-codebase/" },
+    "url": "https://umeshghimire.com.np/blog/auditing-legacy-php-codebase/"
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://umeshghimire.com.np/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://umeshghimire.com.np/blog/" },
+      { "@type": "ListItem", "position": 3, "name": "Auditing a Legacy PHP Codebase", "item": "https://umeshghimire.com.np/blog/auditing-legacy-php-codebase/" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="nav" id="nav">
+    <div class="container nav__inner">
+      <a class="brand" href="/" aria-label="Umesh Ghimire — PHP & WordPress Developer in Nepal">
+        <span class="brand__mark"><img src="/assets/img/favicon-192.png" alt="Umesh Ghimire" width="36" height="36" loading="eager" decoding="async" /></span>
+        <span class="brand__text">Umesh Ghimire</span>
+      </a>
+      <nav class="nav__links" aria-label="Primary">
+        <a href="/">Home</a>
+        <a href="/about/">About</a>
+        <a href="/services/">Services</a>
+        <a href="/portfolio/">Portfolio</a>
+        <a href="/experience/">Experience</a>
+        <a href="/blog/">Blog</a>
+        <a href="/cv/">CV</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+      <div class="nav__actions">
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle color theme">
+          <svg class="icon icon--sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4V2m0 20v-2M4 12H2m20 0h-2M5.6 5.6 4.2 4.2m15.6 15.6-1.4-1.4M5.6 18.4l-1.4 1.4M19.8 4.2l-1.4 1.4M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          <svg class="icon icon--moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+        </button>
+        <a class="btn btn--primary nav__cta" href="/contact/">Hire me</a>
+        <button class="nav__menu" id="navMenu" type="button" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <article class="article">
+      <header class="article__header">
+        <p class="breadcrumbs"><a href="/">Home</a> · <a href="/blog/">Blog</a> · <span aria-current="page">Auditing a legacy PHP codebase</span></p>
+        <span class="kicker">PHP · Code rescue</span>
+        <h1>Auditing a legacy PHP codebase before you inherit it</h1>
+        <p class="article__meta">By <a href="/about/">Umesh Ghimire</a> · Published 6 May 2026 · 12 min read</p>
+        <p class="lede">"Can you take this over?" usually arrives with a zip file, a couple of nervous emails, and an outgoing developer who wants to hand off this week. Whether the codebase is worth taking on — and what it will cost — is decided in the next 90 minutes of reading. Here is the audit I run before I quote, and the report I deliver.</p>
+        <figure class="article__hero">
+          <img src="/assets/img/blog/auditing-legacy-php-codebase.png" alt="Auditing a legacy PHP codebase" width="1200" height="630" loading="eager" decoding="async" />
+        </figure>
+      </header>
+
+      <div class="article__body">
+        <nav class="article__toc" aria-label="Table of contents">
+          <h2>In this article</h2>
+          <ol>
+            <li><a href="#two-shapes">The two shapes of audit</a></li>
+            <li><a href="#first-90">The first 90 minutes</a></li>
+            <li><a href="#complexity">Complexity heuristics</a></li>
+            <li><a href="#security-pass">The security smell pass</a></li>
+            <li><a href="#database">The database story</a></li>
+            <li><a href="#tests">What "tests" actually means here</a></li>
+            <li><a href="#ops">Production access posture</a></li>
+            <li><a href="#quick-wins">Quick wins vs structural debt</a></li>
+            <li><a href="#report">Writing the report</a></li>
+            <li><a href="#pricing">Pricing the rescue</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="two-shapes">The two shapes of audit</h2>
+        <p>It helps to know what kind of audit you are doing because the audience and the deliverable differ:</p>
+        <ul>
+          <li><strong>Pre-acquisition audit.</strong> A buyer is paying you to tell them whether to acquire the codebase. The deliverable is a written report addressed to the buyer with a recommend / don't-recommend, the risks they would inherit, and a remediation cost estimate.</li>
+          <li><strong>Takeover audit.</strong> The owner has decided to switch developers and wants to know what they're handing you. The deliverable is the same shape but the audience is the owner, and you're often quoting on the takeover yourself, so the report doubles as your scope-of-work justification.</li>
+        </ul>
+        <p>The technical work is similar. The framing is different. Be clear up front which one you are running — it changes which findings you emphasise.</p>
+
+        <h2 id="first-90">The first 90 minutes</h2>
+        <p>Before you read a single line of business logic, read these:</p>
+        <ol>
+          <li><strong><code>composer.json</code> and <code>composer.lock</code></strong>. Tells you the framework version, the PHP version requirement and every third-party dependency. Anything pinned to an unmaintained or wildly outdated version is a future migration cost. The lock file tells you the actual versions in production.</li>
+          <li><strong><code>README.md</code></strong>. Read it asking "if I had to deploy this tomorrow, could I?" If the README is missing or only describes "this is the company X website", that absence <em>is</em> the finding. Onboarding cost just went up by a week.</li>
+          <li><strong><code>.env.example</code> or equivalent.</strong> Lists every external dependency the application needs to run — databases, queues, S3 buckets, payment gateways, mail providers, third-party APIs. This is where you discover the system has eight integrations nobody mentioned.</li>
+          <li><strong>Deploy configuration.</strong> A <code>Dockerfile</code>, a CI workflow, a deploy script, anything that captures how this thing reaches production. Absence is again the finding — every deploy currently lives in someone's head.</li>
+          <li><strong>Top-level folder structure.</strong> Spend two minutes scanning. A clean structure tells you the previous developer cared about organisation. A folder named <code>old/</code>, <code>backup/</code> or <code>v2/</code> at the root is its own story.</li>
+        </ol>
+        <p>Do not run the code yet. Do not open the IDE. Just read the meta. By the end of these five steps you usually know whether this is a 4-week takeover or a 4-month rescue.</p>
+
+        <h2 id="complexity">Complexity heuristics</h2>
+        <p>Now sample the code itself. You don't need to read everything — you need a representative slice. I look at:</p>
+        <ul>
+          <li><strong>The five largest files.</strong> A 4,000-line controller is a problem you can quote on. Ten of them is a structural problem you have to plan around.</li>
+          <li><strong>Whatever the framework calls a "controller" or "route" — the request entry points.</strong> If most controller actions are 200+ lines with database queries, validation, business logic and rendering all mixed in, the cost of changing anything is high.</li>
+          <li><strong>The three deepest folders.</strong> Deep nesting is a sign that someone tried to impose order; whether it succeeded depends on whether the names mean anything.</li>
+          <li><strong>Duplicated code.</strong> Search for a couple of obvious phrases — a query that loads the current user, a function that formats currency, a permission check. If the same logic exists in three places with small variations, every change in business rules requires three diffs and you'll miss one.</li>
+        </ul>
+        <p>Tools that help if you want a numeric handle: <code>phploc</code> for size and complexity stats, a duplicate-code detector, and a dependency analyser. Numbers are nice but the human reading is more important — the metric tells you "this might be a problem", the reading tells you whether it actually is.</p>
+
+        <h2 id="security-pass">The security smell pass</h2>
+        <p>Spend 20 minutes grepping for the patterns that explain most PHP CVEs. You're not doing a deep security audit here — you're checking whether the previous developer followed the basics.</p>
+        <pre><code># Direct superglobal use without sanitization
+grep -rn '\$_GET\[\|\$_POST\[\|\$_REQUEST\[' --include='*.php' src/ app/ | head -50
+
+# Raw SQL concatenation
+grep -rn 'wpdb-&gt;query\|DB::raw\|mysqli_query\|mysql_query' --include='*.php' . | head -30
+
+# Inline echo without escaping (sample)
+grep -rn 'echo \$' --include='*.php' . | head -30
+
+# Suspicious eval / dynamic include patterns
+grep -rn 'eval(\|include \$\|require \$' --include='*.php' . | head -20</code></pre>
+        <p>You're not chasing a clean grep — you're sampling. Five hits where a query string flows straight into SQL means there are probably fifty. The audit's job is to flag the pattern, not to enumerate every instance.</p>
+
+        <h2 id="database">The database story</h2>
+        <p>Three questions, one report paragraph each:</p>
+        <ol>
+          <li><strong>Are schema changes versioned?</strong> Look for a <code>migrations/</code> directory, a <code>schema.sql</code>, or in WordPress a custom-table version flag. If there is nothing — and the answer to "how do you change the schema" is "we run ALTER manually on production" — that is a critical finding.</li>
+          <li><strong>Is there an ORM, or raw queries everywhere?</strong> Mixed is fine. Raw everywhere is a maintenance burden but not a fatal flaw — many systems run that way. ORM with occasional raw queries for performance is healthy.</li>
+          <li><strong>Are foreign keys real, or implicit?</strong> An "implicit" foreign key — a column called <code>customer_id</code> with no constraint — means you cannot trust the data. Orphans accumulate. Reports lie. The fix is a migration plan.</li>
+        </ol>
+        <p>If you can, get a database dump (anonymised) and look at the actual data. The schema tells you what the developer intended. The data tells you what actually happened.</p>
+
+        <h2 id="tests">What "tests" actually means here</h2>
+        <p>"Yes, we have tests" can mean anything from "30,000 lines of green PHPUnit" to "one file from a tutorial nobody has run since". The honest answer comes from running them.</p>
+        <ul>
+          <li>Do they pass on a fresh checkout?</li>
+          <li>How long does the suite take? A 45-minute test run gets skipped before deploys, which means the tests aren't actually protecting anything.</li>
+          <li>What is the coverage of the parts that handle money, permissions or destructive operations? That's where it matters; you can ignore coverage of the simple CRUD pages.</li>
+          <li>Are there any integration tests that exercise the database, or only unit tests of pure functions?</li>
+        </ul>
+        <p>A codebase with no tests at all is not necessarily a no-go. A codebase with a broken test suite that everyone has been ignoring for a year is worse — it's actively misleading.</p>
+
+        <h2 id="ops">Production access posture</h2>
+        <p>This is the most-skipped step and the most expensive one to get wrong. Before you take over, you need to know:</p>
+        <ul>
+          <li>Where is production hosted, and who pays the bill?</li>
+          <li>Who currently has SSH or panel access? Are credentials shared in a password vault or in a Slack DM from 2019?</li>
+          <li>Is there a staging environment that mirrors production, or are deploys to production the only deploys?</li>
+          <li>Where are backups, who runs them, when were they last tested by restoring?</li>
+          <li>Where do logs go, and how long are they retained?</li>
+          <li>What monitoring exists? "We notice when customers call" is a finding.</li>
+        </ul>
+        <p>Half of these are not a code problem — they are an operations problem. But they are your problem the moment you take over. If they look bad, scope a 1-week ops handover into the rescue project: rotated credentials, vaulted secrets, documented deploy, basic monitoring. Doing it on day one prevents you carrying someone else's outage.</p>
+
+        <h2 id="quick-wins">Quick wins vs structural debt</h2>
+        <p>By the end of the audit you will have a long list of issues. Sort them into two buckets:</p>
+        <ul>
+          <li><strong>Quick wins.</strong> One-day fixes that materially reduce risk. Rotating leaked credentials, adding a basic backup, putting <code>defined('ABSPATH')</code> at the top of every file, deleting the <code>old/</code> directory full of half-finished code, putting the database behind a private network. These earn early trust with the new owner and demonstrate value.</li>
+          <li><strong>Structural debt.</strong> Multi-week refactors that change how the code is organised. Extracting business logic from controllers, introducing migrations, replacing a homegrown ORM with the framework's. These are projects, not tickets.</li>
+        </ul>
+        <p>The mistake is to start the rescue with the structural work. You haven't earned permission yet. Bank a week of quick wins, then propose the structural plan with a working relationship behind you.</p>
+
+        <h2 id="report">Writing the report</h2>
+        <p>The report is short. It has six sections:</p>
+        <ol>
+          <li><strong>Executive summary.</strong> Three to five sentences. Recommendation. Headline risks. Indicative cost.</li>
+          <li><strong>Architecture &amp; structure.</strong> What the codebase is, what shape it is in, what the major risks are.</li>
+          <li><strong>Security findings.</strong> Critical, high, medium. Sampled, not exhaustive. State that explicitly.</li>
+          <li><strong>Operations &amp; ops debt.</strong> The ops list above with severity per item.</li>
+          <li><strong>Prioritised remediation plan.</strong> Quick wins first (week 1), structural work after (month 1+).</li>
+          <li><strong>Cost &amp; engagement model.</strong> What it would take to do the remediation. Fixed-fee where possible, T&amp;M where the unknowns are too large.</li>
+        </ol>
+        <p>Write it for the decision-maker, not for an engineer. They need to know "is this acquisition a yes" or "is this rescue a six-week or six-month project". Save the engineering detail for an appendix.</p>
+
+        <h2 id="pricing">Pricing the rescue</h2>
+        <p>Here is the unglamorous truth: rescues are usually under-priced. The previous developer's mess is your problem to discover, and the discovery happens after you start. Two pricing patterns work:</p>
+        <ul>
+          <li><strong>Phased fixed-fee.</strong> Phase 1 is a 1- to 2-week stabilisation with a fixed price (the quick-wins list). Phase 2 is the structural work, scoped after Phase 1 because by then you actually know the codebase. The buyer gets price certainty on the part that matters most; you get permission to scope the bigger work from a position of knowledge.</li>
+          <li><strong>Capped time-and-materials.</strong> Hourly rate with a not-to-exceed cap and a defined deliverable. Best for cases where the scope is genuinely unknowable up front but you've shown enough trust through the audit to be hired at all.</li>
+        </ul>
+        <p>What does not work: a fixed price for the whole rescue quoted from the audit alone. You will eat the difference and resent the project.</p>
+
+        <blockquote>
+          <p>Inheriting a codebase and want a written audit before you commit? <a href="/contact/">Send me what you have</a> — I deliver fixed-fee audits with a written report inside one week.</p>
+        </blockquote>
+      </div>
+
+      <footer class="article__footer">
+        <div class="cta-banner">
+          <h2>Need a code audit or rescue?</h2>
+          <p>I deliver written, fixed-fee audits of WordPress and Laravel codebases — security, architecture and a prioritised remediation plan you can act on.</p>
+          <a class="btn btn--primary" href="/contact/">Request an audit →</a>
+        </div>
+      </footer>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <p>© <span id="year">2026</span> Umesh Ghimire · PHP &amp; WordPress Developer in Nepal · Kathmandu.</p>
+      <p class="footer__meta">
+        <a href="/">Home</a> · <a href="/about/">About</a> · <a href="/services/">Services</a> · <a href="/portfolio/">Portfolio</a> · <a href="/experience/">Experience</a> · <a href="/blog/">Blog</a> · <a href="/cv/">CV</a> · <a href="/contact/">Contact</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js" defer></script>
+</body>
+</html>
