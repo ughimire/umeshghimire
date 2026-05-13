@@ -6,7 +6,7 @@ Tell me what you're building. I read every message and reply within one business
 
 Prefer email or a call? Use whatever works for you. For project briefs, the form on the right is fastest — it lands in my inbox with all the context I need.
 
-- ✉️ [me.umeshuser@gmail.com](mailto:me.umeshuser@gmail.com)
+- ✉️ [mail.umeshghimire@gmail.com](mailto:mail.umeshghimire@gmail.com)
 - 📞 [+977 9842 681 490](tel:+9779842681490)
 - 📍 Maharajganj, Kathmandu, Nepal
 - ⏱️ Replies within 24 hours, weekdays

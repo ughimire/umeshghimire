@@ -31,7 +31,7 @@ Today I take on senior freelance and retainer engagements: WordPress plugin deve
 
 **Response** Within 24 hours, weekdays
 
-**Email** [me.umeshuser@gmail.com](mailto:me.umeshuser@gmail.com)
+**Email** [mail.umeshghimire@gmail.com](mailto:mail.umeshghimire@gmail.com)
 
 ## Pragmatic, battle-tested tools
 

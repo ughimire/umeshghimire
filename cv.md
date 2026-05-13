@@ -6,7 +6,7 @@ Umesh Ghimire
 
 Senior Software Developer & Project Manager
 
-Email [me.umeshuser@gmail.com](mailto:me.umeshuser@gmail.com)
+Email [mail.umeshghimire@gmail.com](mailto:mail.umeshghimire@gmail.com)
 
 Phone [+977 9842 681 490](tel:+9779842681490)
 
