@@ -189,7 +189,7 @@
       <div class="hero__bg" aria-hidden="true"></div>
       <div class="container hero__inner">
         <div class="hero__copy">
-          <span class="eyebrow">
+          <span class="eyebrow eyebrow--avail">
             <span class="eyebrow__dot" aria-hidden="true"></span>
             Available for new projects · Kathmandu, Nepal
           </span>
@@ -207,12 +207,11 @@
             <a class="btn btn--primary" href="/contact/">Start a project →</a>
             <a class="btn btn--ghost" href="/portfolio/">See my work</a>
           </div>
-          <ul class="hero__trust">
-            <li><strong>12+</strong><span>Years building</span></li>
-            <li><strong>#1</strong><span>WordPress Plugin Dev Nepal</span></li>
-            <li><strong>50+</strong><span>Projects shipped</span></li>
-            <li><strong>15+</strong><span>Technologies</span></li>
-            <li><strong>4+</strong><span>Years leading teams</span></li>
+          <ul class="hero__trust" data-countup>
+            <li><strong data-count-target="12" data-count-suffix="+">0</strong><span>Years shipping PHP</span></li>
+            <li><strong data-count-target="100" data-count-suffix="K+">0</strong><span>Plugin installs</span></li>
+            <li><strong data-count-target="50" data-count-suffix="+">0</strong><span>Projects delivered</span></li>
+            <li><strong data-count-target="4" data-count-suffix="+">0</strong><span>Years leading teams</span></li>
           </ul>
         </div>
 
@@ -251,11 +250,12 @@
           </div>
         </aside>
       </div>
+      <div class="scroll-indicator" aria-hidden="true">↓</div>
     </section>
 
     <section class="logos" aria-label="Companies I have worked with">
       <div class="container">
-        <p class="logos__label">12+ years across product teams in Nepal</p>
+        <p class="logos__label">Trusted across 12+ years of product teams in Nepal</p>
         <ul class="logos__list">
           <li>ThemeGrill</li>
           <li>MantraBrain</li>
@@ -275,12 +275,12 @@
           <p>From a single plugin to a multi-team product roadmap — pick the engagement that fits.</p>
         </header>
 
-        <div class="grid grid--3">
+        <div class="grid grid--2">
           <article class="card service">
             <div class="service__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
             </div>
-            <h3><a href="/wordpress-plugin-developer/">Custom WordPress Plugin Development in Nepal</a></h3>
+            <h3><a href="/wordpress-plugin-developer/">Custom WordPress Plugin Development in Nepal<span class="link-arrow" aria-hidden="true">→</span></a></h3>
             <p>The go-to WordPress plugin developer in Nepal — production-ready plugins built to WordPress coding standards. Booking systems, LMS, registration, WooCommerce extensions. The kind of code that survives core updates.</p>
             <ul class="ticks"><li>Plugin architecture &amp; review</li><li>WooCommerce &amp; Gutenberg</li><li>WordPress.org submission</li></ul>
           </article>
@@ -289,7 +289,7 @@
             <div class="service__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M3 7h18M6 12h12M9 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
             </div>
-            <h3><a href="/laravel-developer-nepal/">Laravel &amp; PHP Application Development — Nepal</a></h3>
+            <h3><a href="/laravel-developer-nepal/">Laravel &amp; PHP Application Development — Nepal<span class="link-arrow" aria-hidden="true">→</span></a></h3>
             <p>SaaS platforms, REST APIs, internal tools and dashboards built with Laravel — clean architecture, tested, and deploy-ready on AWS or your stack of choice.</p>
             <ul class="ticks"><li>API design &amp; integrations</li><li>Auth, billing, multi-tenant</li><li>Performance tuning</li></ul>
           </article>
@@ -298,7 +298,7 @@
             <div class="service__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M5 12a7 7 0 1 1 14 0M12 3v2m9 7h-2M3 12H1m17.6-7.6L17 5.8M5.4 5.4 7 6.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
             </div>
-            <h3><a href="/fractional-cto-nepal/">Fractional CTO &amp; Tech Lead Services — Nepal</a></h3>
+            <h3><a href="/fractional-cto-nepal/">Fractional CTO &amp; Tech Lead Services — Nepal<span class="link-arrow" aria-hidden="true">→</span></a></h3>
             <p>Need a fractional CTO or tech lead in Nepal? Sprint planning, hiring, code review and stakeholder reporting from a senior who has run engineering teams for 4+ years — without a full-time hire.</p>
             <ul class="ticks"><li>Sprint &amp; roadmap ownership</li><li>Developer hiring &amp; mentoring</li><li>Process &amp; quality gates</li></ul>
           </article>
@@ -307,7 +307,7 @@
             <div class="service__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24"><path d="M3 9h18M3 15h18M9 3v18M15 3v18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
             </div>
-            <h3><a href="/woocommerce-developer-nepal/">WooCommerce Developer Nepal</a></h3>
+            <h3><a href="/woocommerce-developer-nepal/">WooCommerce Developer Nepal<span class="link-arrow" aria-hidden="true">→</span></a></h3>
             <p>Custom WooCommerce stores from Nepal — product configurators, Nepal payment gateway integrations (eSewa, Khalti, Fonepay), inventory and multi-currency. Senior WooCommerce developer for project and retainer work.</p>
             <ul class="ticks"><li>Custom product types</li><li>eSewa, Khalti, Fonepay</li><li>Headless WooCommerce</li></ul>
           </article>
@@ -326,11 +326,36 @@
         </header>
 
         <ul class="hire-grid">
-          <li><a href="/wordpress-plugin-developer/"><strong>WordPress Plugin Developer Nepal</strong><span>Custom plugins built to WordPress.org standards. Builder of Yatra, Sikshya LMS, User Registration.</span></a></li>
-          <li><a href="/woocommerce-developer-nepal/"><strong>WooCommerce Developer Nepal</strong><span>Custom stores with eSewa, Khalti, Fonepay payment gateways. Headless WooCommerce, performance.</span></a></li>
-          <li><a href="/laravel-developer-nepal/"><strong>Laravel Developer Nepal</strong><span>SaaS platforms, REST APIs, multi-tenant apps and dashboards. 12+ years PHP.</span></a></li>
-          <li><a href="/fractional-cto-nepal/"><strong>Fractional CTO Nepal</strong><span>Senior engineering leadership without a full-time hire. Sprint planning, hiring, code review.</span></a></li>
-          <li><a href="/hire-wordpress-developer-nepal/"><strong>Hire WordPress Developer Nepal</strong><span>The catch-all hire-me page. Freelance, retainer, audit. Reply within one business day.</span></a></li>
+          <li><a href="/wordpress-plugin-developer/">
+            <span class="hire-grid__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span>
+            <strong>WordPress Plugin Developer Nepal</strong>
+            <span class="hire-grid__desc">Custom plugins built to WordPress.org standards. Builder of Yatra, Sikshya LMS, User Registration.</span>
+            <span class="hire-grid__arrow" aria-hidden="true">→</span>
+          </a></li>
+          <li><a href="/woocommerce-developer-nepal/">
+            <span class="hire-grid__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 9h18M3 15h18M9 3v18M15 3v18" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span>
+            <strong>WooCommerce Developer Nepal</strong>
+            <span class="hire-grid__desc">Custom stores with eSewa, Khalti, Fonepay payment gateways. Headless WooCommerce, performance.</span>
+            <span class="hire-grid__arrow" aria-hidden="true">→</span>
+          </a></li>
+          <li><a href="/laravel-developer-nepal/">
+            <span class="hire-grid__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 7h18M6 12h12M9 17h6" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span>
+            <strong>Laravel Developer Nepal</strong>
+            <span class="hire-grid__desc">SaaS platforms, REST APIs, multi-tenant apps and dashboards. 12+ years PHP.</span>
+            <span class="hire-grid__arrow" aria-hidden="true">→</span>
+          </a></li>
+          <li><a href="/fractional-cto-nepal/">
+            <span class="hire-grid__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12a7 7 0 1 1 14 0M12 3v2m9 7h-2M3 12H1m17.6-7.6L17 5.8M5.4 5.4 7 6.8" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg></span>
+            <strong>Fractional CTO Nepal</strong>
+            <span class="hire-grid__desc">Senior engineering leadership without a full-time hire. Sprint planning, hiring, code review.</span>
+            <span class="hire-grid__arrow" aria-hidden="true">→</span>
+          </a></li>
+          <li><a href="/hire-wordpress-developer-nepal/">
+            <span class="hire-grid__icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg></span>
+            <strong>Hire WordPress Developer Nepal</strong>
+            <span class="hire-grid__desc">The catch-all hire-me page. Freelance, retainer, audit. Reply within one business day.</span>
+            <span class="hire-grid__arrow" aria-hidden="true">→</span>
+          </a></li>
         </ul>
       </div>
     </section>
@@ -350,7 +375,7 @@
               <h3>Yatra Travel Booking</h3>
               <p>End-to-end WordPress tour-booking plugin: package management, multi-currency payments, departure scheduling and admin dashboards. Flagship product of the MantraBrain catalogue.</p>
               <ul class="chips"><li>WordPress</li><li>PHP</li><li>MySQL</li><li>jQuery</li></ul>
-              <a class="link" href="https://wpyatra.com" target="_blank" rel="noopener">Visit wpyatra.com ↗</a>
+              <a class="link" href="https://wpyatra.com" target="_blank" rel="noopener noreferrer">Visit wpyatra.com ↗</a>
             </div>
           </article>
 
@@ -360,7 +385,7 @@
               <h3>Sikshya LMS</h3>
               <p>Learning-management plugin for WordPress with course authoring, enrollments, quizzes and certificate flows for online educators.</p>
               <ul class="chips"><li>WordPress</li><li>PHP</li><li>MySQL</li><li>JavaScript</li></ul>
-              <a class="link" href="https://wordpress.org/plugins/sikshya/" target="_blank" rel="noopener">View on WordPress.org ↗</a>
+              <a class="link" href="https://wordpress.org/plugins/sikshya/" target="_blank" rel="noopener noreferrer">View on WordPress.org ↗</a>
             </div>
           </article>
 
@@ -370,7 +395,7 @@
               <h3>User Registration Plugin</h3>
               <p>Comprehensive registration and member-management plugin: drag-and-drop form builder, custom fields, conditional logic and admin notifications.</p>
               <ul class="chips"><li>WordPress</li><li>PHP</li><li>MySQL</li><li>jQuery</li></ul>
-              <a class="link" href="https://wordpress.org/plugins/user-registration/" target="_blank" rel="noopener">View on WordPress.org ↗</a>
+              <a class="link" href="https://wordpress.org/plugins/user-registration/" target="_blank" rel="noopener noreferrer">View on WordPress.org ↗</a>
             </div>
           </article>
         </div>
@@ -387,15 +412,24 @@
         </header>
 
         <div class="grid grid--3">
-          <article class="card">
+          <article class="card service">
+            <div class="service__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M12 8v4l3 2M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+            </div>
             <h3>12+ years in PHP</h3>
             <p>Deep experience across WordPress, Laravel, CodeIgniter, Magento and Joomla — boring, battle-tested choices that make your software last.</p>
           </article>
-          <article class="card">
+          <article class="card service">
+            <div class="service__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M16 11a4 4 0 1 0-8 0M3 21v-1a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v1" stroke="currentColor" stroke-width="2" stroke-linecap="round" fill="none"/></svg>
+            </div>
             <h3>I lead teams too</h3>
             <p>Four-plus years as a project manager mean realistic estimates, clear status updates and predictable delivery — not surprises in the final week.</p>
           </article>
-          <article class="card">
+          <article class="card service">
+            <div class="service__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5a3 3 0 0 0-.8-2.2c2.7-.3 5.5-1.3 5.5-6 0-1.2-.5-2.3-1.3-3.1.4-1.1.4-2.3-.1-3.4 0 0-1-.3-3.4 1.3a11 11 0 0 0-6 0C7.5 3.5 6.5 3.8 6.5 3.8c-.5 1.1-.5 2.3-.1 3.4-.8.8-1.3 1.9-1.3 3.1 0 4.7 2.8 5.7 5.5 6a3 3 0 0 0-.8 2.2V22" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+            </div>
             <h3>Open-source mindset</h3>
             <p>Active on WordPress.org and GitHub. I write code your next developer can read — well-structured, documented and reviewed.</p>
           </article>
@@ -404,8 +438,76 @@
     </section>
 
     <section class="section">
-      <div class="container" style="max-width: 820px;">
-        <p style="font-size:1.05rem; line-height:1.7;">Looking for a <strong>WordPress developer in Nepal</strong> or a <strong>PHP developer in Kathmandu</strong> who has actually shipped plugins used by real users? <a href="https://wpyatra.com" rel="noopener" target="_blank">Yatra</a> (tour booking), <a href="https://wordpress.org/plugins/sikshya/" rel="noopener" target="_blank">Sikshya LMS</a>, and <a href="https://wordpress.org/plugins/user-registration/" rel="noopener" target="_blank">User Registration</a> are live on WordPress.org with combined active installs in the hundreds of thousands. That's the track record you hire when you work with Umesh Ghimire.</p>
+      <div class="container">
+        <aside class="callout">
+          <div class="callout__mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M9 12l2 2 4-4M12 22a10 10 0 1 1 0-20 10 10 0 0 1 0 20Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+          </div>
+          <div class="callout__body">
+            <p class="callout__lede">Looking for a <strong>WordPress developer in Nepal</strong> or a <strong>PHP developer in Kathmandu</strong> who has actually shipped plugins used by real users?</p>
+            <p>Three of the plugins I've architected — <a href="https://wpyatra.com" rel="noopener noreferrer" target="_blank">Yatra</a> (tour booking), <a href="https://wordpress.org/plugins/sikshya/" rel="noopener noreferrer" target="_blank">Sikshya LMS</a>, and <a href="https://wordpress.org/plugins/user-registration/" rel="noopener noreferrer" target="_blank">User Registration</a> — are live on WordPress.org with combined active installs in the hundreds of thousands. That's the track record you hire when you work with me.</p>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!--
+      TESTIMONIALS: Real, verified WordPress.org plugin reviews.
+      Each card links to the original review for transparency.
+      Replace or extend by editing this section directly.
+    -->
+    <section class="section section--alt" id="testimonials" aria-label="Client testimonials">
+      <div class="container">
+        <header class="section__head">
+          <span class="kicker">Testimonials</span>
+          <h2>What plugin users say</h2>
+          <p>Verified WordPress.org reviews from users of plugins I've built and shipped.</p>
+        </header>
+
+        <div class="grid grid--3">
+          <article class="card testimonial">
+            <div class="testimonial__rating" aria-label="Rated 5 out of 5 stars">★★★★★</div>
+            <blockquote class="testimonial__quote">
+              <p>"I tested multiple travel and booking plugins, but Yatra clearly stood out as the best option. More features than the others, plus live chat support where you speak directly with someone — they take their users seriously. Highly recommended."</p>
+            </blockquote>
+            <footer class="testimonial__author">
+              <strong>justmikehere</strong>
+              <span>Yatra plugin user · 29 April 2026</span>
+              <a class="testimonial__source" href="https://wordpress.org/support/topic/clearly-the-best-travel-plugin-i-tested/" target="_blank" rel="noopener noreferrer" aria-label="Read original review on WordPress.org (opens in new tab)">WordPress.org review ↗</a>
+            </footer>
+          </article>
+
+          <article class="card testimonial">
+            <div class="testimonial__rating" aria-label="Rated 5 out of 5 stars">★★★★★</div>
+            <blockquote class="testimonial__quote">
+              <p>"The only plugin I like to use for invoicing my clients is Easy Invoice. User-friendly interface and PDF download is the reason I like it the most. Communication always smooth and frequent through Mr Umesh, with daily progress updates."</p>
+            </blockquote>
+            <footer class="testimonial__author">
+              <strong>sisco2016</strong>
+              <span>Easy Invoice customer · 23 August 2025</span>
+              <a class="testimonial__source" href="https://wordpress.org/support/topic/easy-invoice/" target="_blank" rel="noopener noreferrer" aria-label="Read original review on WordPress.org (opens in new tab)">WordPress.org review ↗</a>
+            </footer>
+          </article>
+
+          <article class="card testimonial">
+            <div class="testimonial__rating" aria-label="Rated 5 out of 5 stars">★★★★★</div>
+            <blockquote class="testimonial__quote">
+              <p>"Highly recommend the Yatra plugin to anyone who wants to enhance their travel website's functionality and provide their visitors with a top-notch booking experience. Thank you, Yatra, for creating such a great plugin!"</p>
+            </blockquote>
+            <footer class="testimonial__author">
+              <strong>Zakaria Kalatozishvili</strong>
+              <span>Yatra plugin user · 15 May 2023</span>
+              <a class="testimonial__source" href="https://wordpress.org/support/topic/yatra-rocks/" target="_blank" rel="noopener noreferrer" aria-label="Read original review on WordPress.org (opens in new tab)">WordPress.org review ↗</a>
+            </footer>
+          </article>
+        </div>
+
+        <p style="text-align:center; margin-top:1.6rem; color: var(--fg-mute); font-size:.9rem;">
+          See all reviews:
+          <a href="https://wordpress.org/support/plugin/yatra/reviews/?filter=5" target="_blank" rel="noopener noreferrer">Yatra (4.6 ★)</a> ·
+          <a href="https://wordpress.org/support/plugin/easy-invoice/reviews/?filter=5" target="_blank" rel="noopener noreferrer">Easy Invoice (4.4 ★)</a> ·
+          <a href="https://wordpress.org/support/plugin/user-registration/reviews/?filter=5" target="_blank" rel="noopener noreferrer">User Registration</a>
+        </p>
       </div>
     </section>
 
@@ -417,7 +519,9 @@
           <div style="display:flex; gap:.6rem; justify-content:center; flex-wrap:wrap;">
             <a class="btn btn--primary" href="/contact/">Start a project →</a>
             <a class="btn btn--ghost" href="mailto:mail.umeshghimire@gmail.com">Email me directly</a>
-          </div>
+          
+          <p class="cta-urgency">Typically replies within one business day.</p>
+        </div>
         </div>
       </div>
     </section>
@@ -426,7 +530,7 @@
   <aside class="md-banner" aria-label="View this page in markdown format">
     <div class="container md-banner__inner">
       <p class="md-banner__hint">Prefer plain text? Optimized for AI & LLM tools.</p>
-      <a href="/index.md" class="md-link" target="_blank" rel="noopener" title="View this page as Markdown">
+      <a href="/index.md" class="md-link" target="_blank" rel="noopener noreferrer" title="View this page as Markdown">
         <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M22.27 19.385H1.73A1.73 1.73 0 0 1 0 17.655V6.345a1.73 1.73 0 0 1 1.73-1.73h20.54A1.73 1.73 0 0 1 24 6.345v11.308a1.73 1.73 0 0 1-1.73 1.73zM5.769 15.923v-4.5l2.308 2.885 2.308-2.885v4.5h2.307V8.078h-2.307l-2.308 2.885-2.308-2.885H3.46v7.846zM21.232 12h-2.309V8.077h-2.307V12h-2.308l3.461 4.039z"/></svg>
         View as Markdown
       </a>
@@ -440,6 +544,19 @@
         <a href="/">Home</a> · <a href="/about/">About</a> · <a href="/services/">Services</a> · <a href="/portfolio/">Portfolio</a> · <a href="/experience/">Experience</a> · <a href="/blog/">Blog</a>
         <a href="/wordpress-plugin-developer/">Hire</a> · <a href="/cv/">CV</a> · <a href="/contact/">Contact</a>
       </p>
+      <p class="footer-services">
+        <span class="footer-services-label">Hire for:</span>
+        <a href="/wordpress-plugin-developer/">WordPress Plugin Dev</a> ·
+        <a href="/woocommerce-developer-nepal/">WooCommerce</a> ·
+        <a href="/laravel-developer-nepal/">Laravel</a> ·
+        <a href="/fractional-cto-nepal/">Fractional CTO</a> ·
+        <a href="/hire-wordpress-developer-nepal/">Hire WordPress Dev</a>
+      </p>
+      <p class="footer-validation">
+        Validated:
+        <a href="https://search.google.com/test/rich-results?url=https://umeshghimire.com.np/" target="_blank" rel="noopener noreferrer" aria-label="Test schema in Google Rich Results (opens in new tab)">Schema</a> ·
+        <a href="https://pagespeed.web.dev/report?url=https://umeshghimire.com.np/" target="_blank" rel="noopener noreferrer" aria-label="Test PageSpeed Insights (opens in new tab)">PageSpeed</a>
+      </p>
 
       <!-- GBP entity signal — matches Google Business Profile listing -->
       <span class="sr-only" itemscope itemtype="https://schema.org/Person">
@@ -452,6 +569,12 @@
       </span>
     </div>
   </footer>
+
+  <!-- Sticky mobile CTA: visible only on small screens, doesn't affect desktop -->
+  <a class="sticky-cta" href="/contact/" aria-label="Start a project with Umesh Ghimire">
+    <span>Start a project</span>
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+  </a>
 
   <script src="/assets/js/main.js" defer></script>
 </body>

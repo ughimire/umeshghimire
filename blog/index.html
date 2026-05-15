@@ -118,8 +118,17 @@
         <header class="section__head">
           <span class="kicker">Latest articles</span>
           <h2>Recent posts</h2>
-          <p>Long-form notes on WordPress plugin development, Laravel architecture, code rescue and the practical side of running an engineering project.</p>
+          <p>Long-form notes on WordPress plugin development, Laravel architecture, code rescue and the practical side of running an engineering project. Each post is designed to stay useful for several years — patterns and decisions rather than version-specific tutorials.</p>
         </header>
+
+        <div class="container" style="max-width: 760px; margin: 0 auto 2rem;">
+          <p style="color: var(--fg-soft); line-height: 1.7;">The posts below come out of <strong>12+ years</strong> of building production WordPress plugins, Laravel applications and PHP systems from <strong>Kathmandu, Nepal</strong>. Three topic clusters I write about most often:</p>
+          <ul style="color: var(--fg-soft); line-height: 1.8;">
+            <li><strong>WordPress plugin engineering</strong> — architecture, security, the WordPress.org review process, hook patterns and the maintenance side most tutorials skip. See the <a href="/blog/wordpress-plugin-architecture/">plugin architecture</a> and <a href="/blog/wordpress-plugin-security-checklist/">security checklist</a> posts.</li>
+            <li><strong>Code rescue and audits</strong> — inheriting an existing PHP codebase, sizing the rescue, writing the report a buyer can actually act on. See <a href="/blog/auditing-legacy-php-codebase/">auditing a legacy PHP codebase</a>.</li>
+            <li><strong>Stack decisions and hiring</strong> — when to pick WordPress vs Laravel, and how to hire a senior developer from Nepal without burning your timeline. See <a href="/blog/wordpress-vs-laravel/">WordPress vs Laravel</a> and the <a href="/blog/how-to-hire-wordpress-developer-nepal/">buyer's guide to hiring</a>.</li>
+          </ul>
+        </div>
 
         <ul class="blog-list">
           <li class="card blog-list__item">
@@ -128,7 +137,7 @@
             </a>
             <div>
               <h3><a href="/blog/how-to-hire-wordpress-developer-nepal/">Hire a WordPress developer in Nepal: what to ask, what to avoid</a></h3>
-              <p class="blog-list__meta"><time datetime="2026-05-13">13 May 2026</time> · 9 min read · Hiring</p>
+              <p class="article-meta blog-list__meta"><time class="article-date" datetime="2026-05-13">13 May 2026</time><span class="meta-sep">·</span><span class="article-time">9 min read</span><span class="meta-sep">·</span><span class="article-tag">Hiring</span></p>
               <p>A buyer's guide. The questions that separate seniors from juniors, the red flags worth walking away from, and how to scope a low-risk trial.</p>
             </div>
           </li>
@@ -139,7 +148,7 @@
             </a>
             <div>
               <h3><a href="/blog/auditing-legacy-php-codebase/">Auditing a legacy PHP codebase before you inherit it</a></h3>
-              <p class="blog-list__meta"><time datetime="2026-05-06">6 May 2026</time> · 12 min read · Code rescue</p>
+              <p class="article-meta blog-list__meta"><time class="article-date" datetime="2026-05-06">6 May 2026</time><span class="meta-sep">·</span><span class="article-time">12 min read</span><span class="meta-sep">·</span><span class="article-tag">Code rescue</span></p>
               <p>What to read first, the smells that matter, how to scope the rescue and what to put in the report. The audit I run before I quote.</p>
             </div>
           </li>
@@ -150,7 +159,7 @@
             </a>
             <div>
               <h3><a href="/blog/wordpress-vs-laravel/">WordPress vs Laravel: when to pick which</a></h3>
-              <p class="blog-list__meta"><time datetime="2026-04-29">29 April 2026</time> · 10 min read · Architecture</p>
+              <p class="article-meta blog-list__meta"><time class="article-date" datetime="2026-04-29">29 April 2026</time><span class="meta-sep">·</span><span class="article-time">10 min read</span><span class="meta-sep">·</span><span class="article-tag">Architecture</span></p>
               <p>A practical decision framework, not a tribal war. Three questions that decide it, and the hybrid that often wins.</p>
             </div>
           </li>
@@ -161,7 +170,7 @@
             </a>
             <div>
               <h3><a href="/blog/wordpress-plugin-security-checklist/">WordPress plugin security checklist every developer should follow</a></h3>
-              <p class="blog-list__meta"><time datetime="2026-04-22">22 April 2026</time> · 11 min read · Security</p>
+              <p class="article-meta blog-list__meta"><time class="article-date" datetime="2026-04-22">22 April 2026</time><span class="meta-sep">·</span><span class="article-time">11 min read</span><span class="meta-sep">·</span><span class="article-tag">Security</span></p>
               <p>Sanitize, escape, capability-check, prepared statements, REST permissions and the patterns to make all of them habit.</p>
             </div>
           </li>
@@ -172,7 +181,7 @@
             </a>
             <div>
               <h3><a href="/blog/wordpress-plugin-architecture/">WordPress plugin architecture for the long haul</a></h3>
-              <p class="blog-list__meta"><time datetime="2026-04-15">15 April 2026</time> · 9 min read · Architecture</p>
+              <p class="article-meta blog-list__meta"><time class="article-date" datetime="2026-04-15">15 April 2026</time><span class="meta-sep">·</span><span class="article-time">9 min read</span><span class="meta-sep">·</span><span class="article-tag">Architecture</span></p>
               <p>Folder structure, autoloading, hooks-as-seams, schema versioning, settings, i18n. The structure I reach for when a plugin needs to survive five years of feature creep.</p>
             </div>
           </li>
@@ -186,6 +195,8 @@
           <h2>Need help shipping a PHP or WordPress project?</h2>
           <p>Tell me what you're building — I reply within one business day with honest scope, timeline and budget feedback.</p>
           <a class="btn btn--primary" href="/contact/">Start a project →</a>
+        
+          <p class="cta-urgency">Typically replies within one business day.</p>
         </div>
       </div>
     </section>
@@ -197,6 +208,19 @@
       <p class="footer__meta">
         <a href="/">Home</a> · <a href="/about/">About</a> · <a href="/services/">Services</a> · <a href="/portfolio/">Portfolio</a> · <a href="/experience/">Experience</a> · <a href="/blog/">Blog</a>
         <a href="/wordpress-plugin-developer/">Hire</a> · <a href="/cv/">CV</a> · <a href="/contact/">Contact</a>
+      </p>
+      <p class="footer-services">
+        <span class="footer-services-label">Hire for:</span>
+        <a href="/wordpress-plugin-developer/">WordPress Plugin Dev</a> ·
+        <a href="/woocommerce-developer-nepal/">WooCommerce</a> ·
+        <a href="/laravel-developer-nepal/">Laravel</a> ·
+        <a href="/fractional-cto-nepal/">Fractional CTO</a> ·
+        <a href="/hire-wordpress-developer-nepal/">Hire WordPress Dev</a>
+      </p>
+      <p class="footer-validation">
+        Validated:
+        <a href="https://search.google.com/test/rich-results?url=https://umeshghimire.com.np/" target="_blank" rel="noopener noreferrer" aria-label="Test schema in Google Rich Results (opens in new tab)">Schema</a> ·
+        <a href="https://pagespeed.web.dev/report?url=https://umeshghimire.com.np/" target="_blank" rel="noopener noreferrer" aria-label="Test PageSpeed Insights (opens in new tab)">PageSpeed</a>
       </p>
     </div>
   </footer>

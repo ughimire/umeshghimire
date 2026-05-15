@@ -83,4 +83,33 @@
   // ---------- CV print button (CSP-safe, no inline handler) ----------
   const cvPrint = document.getElementById('cvPrintBtn');
   if (cvPrint) cvPrint.addEventListener('click', () => window.print());
+
+  // ---------- Count-up animation for hero stats (B2.2) ----------
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const counters = document.querySelectorAll('[data-count-target]');
+  if (counters.length && 'IntersectionObserver' in window) {
+    const animate = (el) => {
+      const target = parseInt(el.dataset.countTarget, 10);
+      const suffix = el.dataset.countSuffix || '';
+      if (reduced) { el.textContent = target + suffix; return; }
+      const duration = 1200;
+      const start = performance.now();
+      const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+      const tick = (now) => {
+        const t = Math.min(1, (now - start) / duration);
+        el.textContent = Math.round(target * easeOut(t)) + suffix;
+        if (t < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    };
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !entry.target.dataset.counted) {
+          entry.target.dataset.counted = '1';
+          animate(entry.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    counters.forEach((el) => io.observe(el));
+  }
 })();
