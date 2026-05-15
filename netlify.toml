@@ -49,6 +49,36 @@
   force = true
 
 [[redirects]]
+  from = "/wordpress-plugin-developer/index.html"
+  to = "/wordpress-plugin-developer/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/woocommerce-developer-nepal/index.html"
+  to = "/woocommerce-developer-nepal/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/laravel-developer-nepal/index.html"
+  to = "/laravel-developer-nepal/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/fractional-cto-nepal/index.html"
+  to = "/fractional-cto-nepal/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/hire-wordpress-developer-nepal/index.html"
+  to = "/hire-wordpress-developer-nepal/"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/blog/wordpress-plugin-architecture/index.html"
   to = "/blog/wordpress-plugin-architecture/"
   status = 301
@@ -73,8 +103,15 @@
   force = true
 
 [[redirects]]
-  from = "/blog/hire-wordpress-developer-nepal/index.html"
-  to = "/blog/hire-wordpress-developer-nepal/"
+  from = "/blog/how-to-hire-wordpress-developer-nepal/index.html"
+  to = "/blog/how-to-hire-wordpress-developer-nepal/"
+  status = 301
+  force = true
+
+# Old blog slug → new slug (301)
+[[redirects]]
+  from = "/blog/hire-wordpress-developer-nepal/*"
+  to = "/blog/how-to-hire-wordpress-developer-nepal/:splat"
   status = 301
   force = true
 

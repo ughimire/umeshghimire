@@ -84,7 +84,7 @@ It rewrites `index.md`, `about.md`, `services.md`, `portfolio.md`, `experience.m
 │   ├── css/styles.css
 │   ├── js/main.js
 │   └── img/
-│       ├── umesh.png            # Profile photo
+│       ├── umesh-ghimire.jpg    # Profile photo (400×400 square)
 │       ├── favicon-32.png
 │       ├── favicon-192.png
 │       ├── apple-touch-icon.png

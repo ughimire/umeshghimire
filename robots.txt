@@ -1,4 +1,14 @@
 User-agent: *
 Allow: /
 
+# AI crawlers — allow for LLM indexing
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
 Sitemap: https://umeshghimire.com.np/sitemap.xml

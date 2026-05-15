@@ -79,4 +79,8 @@
       setTimeout(() => { t.hidden = true; }, 6000);
     }
   }
+
+  // ---------- CV print button (CSP-safe, no inline handler) ----------
+  const cvPrint = document.getElementById('cvPrintBtn');
+  if (cvPrint) cvPrint.addEventListener('click', () => window.print());
 })();

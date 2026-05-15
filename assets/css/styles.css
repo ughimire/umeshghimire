@@ -554,6 +554,35 @@ hr { border: 0; border-top: 1px solid var(--border); margin: 2rem 0; }
   .blog-list__item { grid-template-columns: 1fr; }
 }
 
+/* ---------- Hire-me grid (homepage landing-page links) ---------- */
+.hire-grid {
+  list-style: none;
+  padding: 0;
+  margin: 1.5rem 0 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
+}
+.hire-grid li { margin: 0; }
+.hire-grid a {
+  display: grid;
+  gap: .35rem;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-elev);
+  color: var(--fg);
+  text-decoration: none;
+  transition: border-color .15s, transform .15s;
+  height: 100%;
+}
+.hire-grid a:hover {
+  border-color: var(--brand);
+  transform: translateY(-2px);
+}
+.hire-grid strong { color: var(--fg); font-size: 1.02rem; }
+.hire-grid span { color: var(--fg-soft); font-size: .9rem; line-height: 1.5; }
+
 /* ---------- Long-form article ---------- */
 .article { max-width: 760px; margin: 0 auto; padding: 0 1rem; }
 .article__header { padding: 2rem 0 1rem; }
